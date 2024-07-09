@@ -1,0 +1,11 @@
+diff --git a/sbndaq-artdaq/Generators/SBND/NevisTPC/nevishwutils/StringUtils.cpp b/sbndaq-artdaq/Generators/SBND/NevisTPC/nevishwutils/StringUtils.cpp
+index 738f93b..d30f82b 100644
+--- a/sbndaq-artdaq/Generators/SBND/NevisTPC/nevishwutils/StringUtils.cpp
++++ b/sbndaq-artdaq/Generators/SBND/NevisTPC/nevishwutils/StringUtils.cpp
+@@ -1,5 +1,5 @@
+ #include <algorithm>
+-
++#include <ctime>
+ #include "StringUtils.h"
+ 
+ 

@@ -55,6 +55,8 @@ class SbndaqArtdaq(CMakePackage):
     depends_on("hiredis")
     depends_on("cetmodules", type="build")
 
+    patch("patch/v1_10_01.path", when="@v1_10_01" )
+
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"
         return url.format(self.name, version.underscored)
