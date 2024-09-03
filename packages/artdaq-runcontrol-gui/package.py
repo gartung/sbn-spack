@@ -17,15 +17,21 @@ class ArtdaqRuncontrolGui(CMakePackage):
 
     version("develop", git=git_base, branch="develop", get_full_repo=True)
 
-    version("v1_03_05", sha256="3c5dceeebd4cec1d81a8c2af460db89ae8f927c979ae0512c83c7267c283f82f")
-    version("v1_03_04", sha256="57273320a95de6abacf4a853b53507710bb505a3e33dd09b74e3fd1b0e2e94ea")
-    
+    version(
+        "v1_03_05",
+        sha256="3c5dceeebd4cec1d81a8c2af460db89ae8f927c979ae0512c83c7267c283f82f",
+    )
+    version(
+        "v1_03_04",
+        sha256="57273320a95de6abacf4a853b53507710bb505a3e33dd09b74e3fd1b0e2e94ea",
+    )
+
     depends_on("cetmodules", type="build")
     depends_on("qt@5.15:")
     depends_on("xmlrpc-c")
 
-    patch("patch/v1_03_05.path", when="@v1_03_05" )   
- 
+    patch("patch/v1_03_05.patch", when="@v1_03_05")
+
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"
         return url.format(self.name, version.underscored)
