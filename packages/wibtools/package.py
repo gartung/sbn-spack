@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-import spack.util.spack_json as sjson
-from spack.package import *
+import os
+import sys
 
+from spack import *
 
 class Wibtools(CMakePackage):
     """Tools for communicating with the WIB hardware"""
@@ -15,8 +16,8 @@ class Wibtools(CMakePackage):
     git_base = "https://github.com/SBNSoftware/wibtools.git"
     list_url = "https://api.github.com/repos/SBNSoftware/wibtools/tags"
 
-    version("develop", git=git_base, branch="develop", get_full_repo=True)
 
+    version("v1_10_02", sha256="367bfd9ed1ed227592075a1a2ebcc3aeb8dd43aed19f1cbfe3ae539b5b19035d") 
     version("v1_10_01", sha256="66d85edb4516c01adc85378427776fc85ca001eb27613cf32ab819275d058975") 
     version("v1_10_00", sha256="d729cd877212b5e2138930f645657e37ac21d013398a6ffdd2ccb97194d03876")   
     version("v1_09_01", sha256="0702a5c8bf7cfa936557a95d6320e872651b90bbc9457e853f25e9048fbdda0f")
@@ -27,6 +28,8 @@ class Wibtools(CMakePackage):
     version("v1_08_03", sha256="1ec4d4bb2f508069eaf56d619486b19b9ccc4aaca93141846c4bcac8c6266d6c")
     version("v1_08_02", sha256="3034d12ad162090ede7476c4dc9867c1ee5bbdfc1b6d377dd1b49eca0ff131ce")
     version("v1_08_00", sha256="1c496184d30f3c5aa633add614c6ccd517b9c46a7d128e6c2049fcbe445b2190")
+    
+    version("develop", git=git_base, branch="develop", get_full_repo=True)
 
     variant(
         "cxxstd",

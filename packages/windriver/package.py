@@ -3,8 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.package import *
+import os
+import sys
 
+from spack import *
 
 class Windriver(Package):
     """Windriver library"""
