@@ -4,8 +4,8 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 import spack.util.spack_json as sjson
-from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack.package import *
+from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 
 class ArtdaqRuncontrolGui(CMakePackage):

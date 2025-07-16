@@ -1,6 +1,6 @@
 import glob
 
-from spack import *
+from spack.package import *
 from spack_repo.builtin.build_systems.generic import Package
 
 

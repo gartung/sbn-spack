@@ -6,7 +6,7 @@
 import os
 import sys
 
-from spack import *
+from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
 
 def sanitize_environments(env, *vars):
