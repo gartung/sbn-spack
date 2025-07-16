@@ -39,6 +39,7 @@ class Sbndcode(CMakePackage):
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
+    version("10.06.01", tag="v10_06_01", git=git_base, get_full_repo=True)
     version("09.32.00", tag="v09_32_00", git=git_base, get_full_repo=True)
     version("09.10.00", tag="v09_10_00", git=git_base, get_full_repo=True)
     version("09.10.01", tag="v09_10_01", git=git_base, get_full_repo=True)

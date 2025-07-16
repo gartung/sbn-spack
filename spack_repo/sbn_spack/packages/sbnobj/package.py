@@ -49,6 +49,7 @@ class Sbnobj(CMakePackage):
         git=git_base,
         get_full_repo=True,
     )
+    version("10.01.00", tag="v10_01_00", git=git_base, get_full_repo=True)
     version("09.12.12", sha256="60f4f1d437cad1b1573c5f56186a48edbeab1431ccdeb0bcbe8d62fc3c7b21b0")
     version("09.12.09", sha256="4905f82711ac35fcdb732500ce1a33cee83f38a66a116d3d30aeeca749ba1313")
     version("09.12.05", tag="v09_12_05", git=git_base, get_full_repo=True)

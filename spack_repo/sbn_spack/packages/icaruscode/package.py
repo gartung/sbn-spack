@@ -51,6 +51,7 @@ class Icaruscode(CMakePackage):
     version(
         "09.37.02.03", sha256="1762e5a05ebac100032b2bc46244a63f3bc454f51a583da03b935a6827d7df6f"
     )
+    version("10.06.00.01p05", tag="v10_06_00_01p05", git=git_base, get_full_repo=True)
     version("09.37.01.03p02", tag="v09_37_01_03p02", git=git_base, get_full_repo=True)
     version("09.37.01.vec03p02", tag="v09_37_01_03p02", git=git_base, get_full_repo=True)
     version("09.37.01.02p02", tag="v09_37_01_02p02", git=git_base, get_full_repo=True)
