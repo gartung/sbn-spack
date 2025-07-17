@@ -75,6 +75,8 @@ class Icarusalg(CMakePackage):
     # Build-only dependencies.
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     # Build and link dependencies.
     depends_on("boost", type=("build", "run"))

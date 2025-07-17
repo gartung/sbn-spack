@@ -52,6 +52,8 @@ class IcarusSignalProcessing(CMakePackage):
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")
     depends_on("pkgconfig", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     # Build and link dependencies.
     depends_on("fftw", type=("build", "run"))

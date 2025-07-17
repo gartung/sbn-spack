@@ -51,6 +51,8 @@ class Sbndaq(CMakePackage):
     depends_on("sbndaq-artdaq+icarus", when="+icarus")
     depends_on("sbndaq-artdaq+sbnd", when="+sbnd")
     depends_on("cetmodules", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"

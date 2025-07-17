@@ -49,6 +49,8 @@ class SbndaqSuite(BundlePackage):
 
     depends_on("gdb@14.2+tui+source-highlight+ld+lto+quad", when="+gdb")
     depends_on("binutils@2.43.1+gas")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     with when("@develop"):
         depends_on("artdaq-suite@v3_13_02")

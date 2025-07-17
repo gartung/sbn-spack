@@ -28,6 +28,8 @@ class ArtdaqRuncontrolGui(CMakePackage):
     )
 
     depends_on("cetmodules", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("qt@5.15:")
     depends_on("xmlrpc-c")
 

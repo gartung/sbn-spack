@@ -60,6 +60,8 @@ class Sbnanaobj(CMakePackage):
     depends_on("castxml")
     depends_on("py-pygccxml")
     depends_on("cetmodules", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     def url_for_version(self, version):
         # url = 'https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2'

@@ -57,6 +57,8 @@ class SbndaqArtdaq(CMakePackage):
     depends_on("redis")
     depends_on("hiredis")
     depends_on("cetmodules", type="build")
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
 
     patch("patch/v1_10_01.path", when="@v1_10_01" )
 

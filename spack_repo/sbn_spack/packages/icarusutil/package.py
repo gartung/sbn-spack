@@ -54,6 +54,8 @@ class Icarusutil(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
+    depends_on("c", type="build")
+    depends_on("cxx", type="build")
     depends_on("art-root-io")
     depends_on("larbatch")
     depends_on("py-pycurl")
