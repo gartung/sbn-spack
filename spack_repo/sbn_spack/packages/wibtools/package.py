@@ -16,6 +16,7 @@ class Wibtools(CMakePackage):
     homepage = "https://github.com/SBNSoftware"
     url = "https://github.com/SBNSoftware/wibtools"
     git_base = "https://github.com/SBNSoftware/wibtools.git"
+    git = git_base
     list_url = "https://api.github.com/repos/SBNSoftware/wibtools/tags"
 
     version(

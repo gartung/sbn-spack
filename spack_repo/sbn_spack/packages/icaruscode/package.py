@@ -41,6 +41,7 @@ class Icaruscode(CMakePackage):
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icaruscode"
     git_base = "https://github.com/SBNSoftware/icaruscode.git"
+    git = git_base
 
     version(
         "develop",

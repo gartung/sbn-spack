@@ -42,6 +42,7 @@ class Sbnobj(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbnobj"
     git_base = "https://cdcvs.fnal.gov/projects/sbnobj"
     git_base = "https://github.com/SBNSoftware/sbnobj.git"
+    git = git_base
 
     version(
         "develop",

@@ -37,6 +37,7 @@ class Sbndcode(CMakePackage):
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbncode"
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
+    git = git_base
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
     version("10.06.01", tag="v10_06_01", git=git_base, get_full_repo=True)

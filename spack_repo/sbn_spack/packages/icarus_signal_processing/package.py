@@ -34,6 +34,7 @@ class IcarusSignalProcessing(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarus_signal_processing"
     url = "https://github.com/SBNSoftware/icarus_signal_processing/archive/refs/tags/v09_32_01.tar.gz"
     git_base = "https://github.com/SBNSoftware/icarus_signal_processing.git"
+    git = git_base
     list_url = "https://api.github/repos/SBNSoftware/icarus_signal_processing/tags"
 
     version("09.37.01", sha256="a6f09ef0bea681f77061094e5ca9691c8135b7e62e55f7a1b95a5b85f0d6cc57")

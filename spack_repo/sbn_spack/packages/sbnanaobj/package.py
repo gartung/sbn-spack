@@ -30,6 +30,7 @@ class Sbnanaobj(CMakePackage):
     homepage = "https://www.example.com"
     url = "https://github.com/SBNSoftware/sbnanaobj/archive/refs/tags/v09_17_04.tar.gz"
     git_base="https://github.com/SBNSoftware/sbnanaobj.git"
+    git = git_base
     version("10.00.04", tag="v10_00_04", git=git_base, get_full_repo=True)
     version(
         "09.17.06.06", sha256="e943ca9411282fdd1d3d8b635b706d777722857426488188b39d2bb6c9cd3947"

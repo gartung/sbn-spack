@@ -34,6 +34,7 @@ class Sbncode(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbncode"
     url = "https://github.com/SBNSoftware/sbncode/archive/refs/tags/v09_35_01.tar.gz"
     git_base = "https://github.com/SBNSoftware/sbncode.git"
+    git = git_base
     list_url = "https://api.github.com/repos/SBNSoftware/sbncode/tags"
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)

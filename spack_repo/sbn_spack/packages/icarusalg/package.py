@@ -33,6 +33,7 @@ class Icarusalg(CMakePackage):
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarusalg"
     git_base = "https://github.com/SBNSoftware/icarusalg.git"
+    git = git_base
     url = "https://github.com/SBNSoftware/icarusalg/archive/refs/tags/v09_34_00.tar.gz"
     list_url = "https://api.github.com/repos/SBNSoftware/icarusalg/tags"
 
