@@ -22,7 +22,7 @@ class SbndaqArtdaqCore(CMakePackage):
 
     version(
         "v1_10_03",
-        sha256="d69150f99f520bbdf1ad3f70448d3091c5f7562c6eafb0714c86fad03d3010bb",
+        sha256="de72fba489e5f15b89843a86d60e3fd75d5fd18993dc353017cc657be602323b",
     )
     version(
         "v1_10_02",
