@@ -5,9 +5,9 @@
 
 import os
 
-import spack.util.spack_json as sjson
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,17 +26,18 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class IcarusSignalProcessing(CMakePackage):
+class IcarusSignalProcessing(CMakePackage, FnalGithubPackage):
     """SignalProcessing for icarus
     framework for particle physics experiments.
     """
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarus_signal_processing"
-    url = "https://github.com/SBNSoftware/icarus_signal_processing/archive/refs/tags/v09_32_01.tar.gz"
+    url = "https://github.com/SBNSoftware/icarus_signal_processing/archive/refs/tags/v10_06_00_01.tar.gz"
     git_base = "https://github.com/SBNSoftware/icarus_signal_processing.git"
     git = git_base
     list_url = "https://api.github/repos/SBNSoftware/icarus_signal_processing/tags"
 
+    version("10.06.00.01", sha256="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
     version("09.37.01", sha256="a6f09ef0bea681f77061094e5ca9691c8135b7e62e55f7a1b95a5b85f0d6cc57")
     version("09.32.01", sha256="220043d6cee8fd84b37f1cfc0a24e6a8b4b5febbc1cb50a4f56e891eb53d8241")
     version("develop", branch="develop", git=git_base, get_full_repo=True)
@@ -72,22 +73,6 @@ class IcarusSignalProcessing(CMakePackage):
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/icarus_signal_processing/archive/v{0}.tar.gz"
         return url.format(version.underscored)
-
-    def fetch_remote_versions(self, concurrency=None):
-        return dict(
-            map(
-                lambda v: (v.dotted, self.url_for_version(v)),
-                [
-                    Version(d["name"][1:])
-                    for d in sjson.load(
-                        spack.util.web.read_from_url(
-                            self.list_url, accept_content_type="application/json"
-                        )[2]
-                    )
-                    if d["name"].startswith("v")
-                ],
-            )
-        )
 
     def cmake_args(self):
         # Set CMake args.

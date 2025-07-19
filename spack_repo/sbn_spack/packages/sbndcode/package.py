@@ -8,11 +8,7 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-
-libdir = "%s/var/spack/repos/fnal_art/lib" % os.environ["SPACK_ROOT"]
-if libdir not in sys.path:
-    sys.path.append(libdir)
-
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 def sanitize_environments(*args):
     for env in args:
@@ -30,7 +26,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Sbndcode(CMakePackage):
+class Sbndcode(CMakePackage, FnalGithubPackage):
     """The eponymous package of the Sbn experiment
     framework for particle physics experiments.
     """

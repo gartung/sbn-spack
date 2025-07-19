@@ -8,9 +8,10 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
-class Wibtools(CMakePackage):
+class Wibtools(CMakePackage, FnalGithubPackage):
     """Tools for communicating with the WIB hardware"""
 
     homepage = "https://github.com/SBNSoftware"
@@ -88,22 +89,6 @@ class Wibtools(CMakePackage):
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"
         return url.format(self.name, version.underscored)
-
-    def fetch_remote_versions(self, concurrency=None):
-        return dict(
-            map(
-                lambda v: (v.dotted, self.url_for_version(v)),
-                [
-                    Version(d["name"][1:])
-                    for d in sjson.load(
-                        spack.util.web.read_from_url(
-                            self.list_url, accept_content_type="application/json"
-                        )[2]
-                    )
-                    if d["name"].startswith("v")
-                ],
-            )
-        )
 
     def cmake_args(self):
         args = [
