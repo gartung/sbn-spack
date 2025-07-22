@@ -19,7 +19,7 @@
 #
 # See the Spack documentation for more information on packaging.
 # ----------------------------------------------------------------------------
-
+import os
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
 
@@ -74,5 +74,5 @@ class Sbnanaobj(CMakePackage):
         return args
 
     def setup_build_environment(self, spack_env):
-        spack_env.set("SBNANAOBJ_DIR", "%s" % self.stage.source_path)
+        spack_env.set("SBNANAOBJ_DIR", "%s" % os.path.realpath(self.stage.source_path))
         spack_env.set("ROOT_INC", "%s" % self.spec["root"].prefix.include)
