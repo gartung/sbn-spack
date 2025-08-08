@@ -27,7 +27,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Icarusutil(CMakePackage, FnalGithubPakage):
+class Icarusutil(CMakePackage, FnalGithubPackage):
     """icarusutil"""
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarusutil"
