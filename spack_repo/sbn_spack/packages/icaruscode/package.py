@@ -38,7 +38,7 @@ class Icaruscode(CMakePackage, FnalGithubPackage):
 
     version(
         "develop",
-        commit="84314472f1e206b351fd9b52f1f6800c2a90b4c3",
+        branch="develop",
         git=git_base,
         get_full_repo=True,
     )
