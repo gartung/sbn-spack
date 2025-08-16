@@ -53,6 +53,37 @@ class Sbncode(CMakePackage):
     patch("v09_37_01_02.patch", when="@09.37.01.02")
     patch("v09_37_01_03.patch", when="@09.37.01.03")
 
+    def patch(self):
+        filter_file(
+                'artdaq_core',
+                'artdaq-core',
+                'CMakeLists.txt',
+            )
+        filter_file(
+            r'find_package\( art REQUIRED \)',
+            'find_package( art REQUIRED )\nfind_package(Eigen)\nfind_package(larrecodnn)',
+            'CMakeLists.txt',
+            )
+
+        for d in (
+                'BeamSpillInfoRetriever/',
+                'BeamSpillInfoRetriever/BNBRetriever/',
+                'BeamSpillInfoRetriever/BNBEXTRetriever/',
+                'BeamSpillInfoRetriever/NuMIEXTRetriever/',
+                'BeamSpillInfoRetriever/NuMIRetriever/',
+                'CAFMaker/',
+            ):
+            filter_file(
+                    'artdaq_core',
+                    'artdaq-core',
+                    'sbncode/{0}/CMakeLists.txt'.format(d),
+                )
+            filter_file(
+                    'artdaq.core::artdaq-core_Utilities',
+                    'artdaq-core::Utilities',
+                    'sbncode/{0}/CMakeLists.txt'.format(d),
+                )
+
     variant(
         "cxxstd",
         default="17",
@@ -69,60 +100,69 @@ class Sbncode(CMakePackage):
     depends_on("cxx", type="build")
 
     # Build and link dependencies.
-    depends_on("artdaq-core")
-    depends_on("art-root-io")
     depends_on("art")
     depends_on("artdaq-core")
+    depends_on("art-root-io")
     depends_on("boost")
-    depends_on("canvas-root-io")
     depends_on("canvas")
+    depends_on("canvas-root-io")
+    depends_on("castxml")
     depends_on("cetlib-except")
     depends_on("clhep")
     depends_on("cppgsl")
-    depends_on("eigen")
-    depends_on("fftw")
-    depends_on("hep-concurrency")
-    depends_on("ifdh-art")
-    depends_on("tbb")
-    depends_on("gsl")
-    depends_on("geant4")
-    depends_on("zlib")
-    depends_on("xerces-c")
-    depends_on("larana")
-    depends_on("larcoreobj")
-    depends_on("larcore")
-    depends_on("lardataobj")
-    depends_on("lardata")
-    depends_on("larevt")
-    depends_on("pandora")
-    depends_on("larpandora")
-    depends_on("larpandoracontent")
-    depends_on("py-torch")
-    depends_on("larreco")
-    depends_on("larsim")
-    depends_on("libwda")
-    depends_on("marley")
-    depends_on("nug4")
-    depends_on("nugen")
-    depends_on("genie")
-    depends_on("ifdhc")
-    depends_on("ifbeam")
-    depends_on("libxml2")
-    depends_on("nucondb")
-    depends_on("nutools")
-    depends_on("postgresql")
-    depends_on("log4cpp")
-    depends_on("range-v3")
-    depends_on("sbnobj")
-    depends_on("sbnanaobj")
-    depends_on("sbndaq-artdaq-core")
-    depends_on("sqlite")
-    depends_on("trace")
     depends_on("dk2nudata")
     depends_on("dk2nugenie")
-    depends_on("py-srproxy")
-    depends_on("castxml")
+    depends_on("eigen")
+    depends_on("fftw")
+    depends_on("geant4")
+    depends_on("genie")
+    depends_on("gsl")
+    depends_on("hep-concurrency")
+    depends_on("ifbeam")
+    depends_on("ifdh-art")
+    depends_on("ifdhc")
+    depends_on("larana")
+    depends_on("larcore")
+    depends_on("larcoreobj")
+    depends_on("larcorealg")
+    depends_on("lardata")
+    depends_on("lardataalg")
+    depends_on("lardataobj")
+    depends_on("larevt")
+    depends_on("larfinder")
+    depends_on("larpandora")
+    depends_on("larpandoracontent")
+    depends_on("larreco")
+    depends_on("larrecodnn")
+    depends_on("larsim")
+    depends_on("libwda")
+    depends_on("libxml2")
+    depends_on("log4cpp")
+    depends_on("marley")
+    depends_on("messagefacility")
+    depends_on("nucondb")
+    depends_on("nug4")
+    depends_on("nugen")
+    depends_on("nurandom")
+    depends_on("nusystematics")
+    depends_on("nusimdata")
+    depends_on("nutools")
+    depends_on("pandora")
+    depends_on("postgresql")
     depends_on("py-pygccxml")
+    depends_on("py-srproxy")
+    depends_on("py-torch")
+    depends_on("range-v3")
+    depends_on("sbnanaobj")
+    depends_on("sbndaq-artdaq-core")
+    depends_on("sbnobj")
+    depends_on("sqlite")
+    depends_on("systematicstools")
+    depends_on("tbb")
+    depends_on("trace")
+    depends_on("xerces-c")
+    depends_on("zlib")
+
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
