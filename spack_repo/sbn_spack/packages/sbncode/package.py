@@ -133,7 +133,7 @@ class Sbncode(CMakePackage):
     depends_on("larpandora")
     depends_on("larpandoracontent")
     depends_on("larreco")
-    depends_on("larrecodnn")
+    depends_on("larrecodnn +tensorflow")
     depends_on("larsim")
     depends_on("libwda")
     depends_on("libxml2")
@@ -152,6 +152,7 @@ class Sbncode(CMakePackage):
     depends_on("py-pygccxml")
     depends_on("py-srproxy")
     depends_on("py-torch")
+    depends_on("py-tensorflow")
     depends_on("range-v3")
     depends_on("sbnanaobj")
     depends_on("sbndaq-artdaq-core")
@@ -192,6 +193,9 @@ class Sbncode(CMakePackage):
 
     def cmake_args(self):
         # Set CMake args.
+        tdir = "{0}/lib/python{1}/site-packages/tensorflow".format(
+                self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
+                )
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
@@ -199,6 +203,9 @@ class Sbncode(CMakePackage):
             ),
             "-DZLIB_ROOT={0}".format(self.spec["zlib"].prefix),
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
+            "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
+            "-DTensorFlow_cc_LIBRARY:FILEPATH={0}/libtensorflow_cc.so.2".format(tdir),
+            "-DTensorFlow_framework_LIBRARY:FILEPATH={0}/libtensorflow_framework.so.2".format(tdir),
         ]
         return args
 

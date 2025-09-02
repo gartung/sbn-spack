@@ -93,7 +93,6 @@ class Icaruscode(CMakePackage):
     depends_on("artdaq-core", type=("build", "run"))
     depends_on("art-root-io", type=("build", "run"))
     depends_on("art", type=("build", "run"))
-    depends_on("artdaq-core", type=("build", "run"))
     depends_on("boost", type=("build", "run"))
     depends_on("canvas-root-io", type=("build", "run"))
     depends_on("canvas", type=("build", "run"))

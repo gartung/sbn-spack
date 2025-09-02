@@ -60,6 +60,7 @@ class IcarusSignalProcessing(CMakePackage):
     # Build and link dependencies.
     depends_on("fftw", type=("build", "run"))
     depends_on("root", type=("build", "run"))
+    depends_on("nlohmann-json", type=("build", "run"))
 
     patch("cetmodules2.patch", when="@develop")
     patch("v09_32_01.patch", when="@09.32.01")
@@ -92,7 +93,11 @@ class IcarusSignalProcessing(CMakePackage):
 
     def cmake_args(self):
         # Set CMake args.
-        args = ["-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value)]
+        args = [
+            "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
+            "-DVDT_INCLUDE_DIR={0}".format(self.spec["vdt"].prefix.include),
+            "-DVDT_LIBRARY={0}".format(self.spec["vdt"].prefix.lib),
+        ]
         return args
 
     def setup_build_environment(self, spack_env):
