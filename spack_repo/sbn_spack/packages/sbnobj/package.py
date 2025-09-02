@@ -102,12 +102,14 @@ class Sbnobj(CMakePackage, FnalGithubPackage):
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
     depends_on("larsim", type=("build", "run"))
+    depends_on("larvecutils", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
     depends_on("messagefacility", type=("build", "run"))
     depends_on("nug4", type=("build", "run"))
     depends_on("nusimdata", type=("build", "run"))
     depends_on("dk2nudata", type=("build", "run"))
+    depends_on("nufinder", type=("build"))
     depends_on("nutools", type=("build", "run"))
     depends_on("postgresql", type=("build", "run"))
     depends_on("root", type=("build", "run"))
@@ -116,6 +118,9 @@ class Sbnobj(CMakePackage, FnalGithubPackage):
     depends_on("sqlite", type=("build", "run"))
     depends_on("trace", type=("build", "run"))
     depends_on("py-srproxy", type=("build", "run"))
+    depends_on("catch2", type=("build", "run"))
+    depends_on("nlohmann-json", type=("build", "run"))
+    depends_on("vdt", type=("build", "run"))
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -129,7 +134,11 @@ class Sbnobj(CMakePackage, FnalGithubPackage):
 
     def cmake_args(self):
         # Set CMake args.
-        args = ["-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value)]
+        args = [
+             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
+             "-DVDT_INCLUDE_DIR={0}".format(self.spec["vdt"].prefix.include),
+             "-DVDT_LIBRARY={0}".format(self.spec["vdt"].prefix.lib),
+             ]
         return args
 
     def setup_build_environment(self, spack_env):

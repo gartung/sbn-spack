@@ -67,6 +67,19 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
     patch("v09_37_01.patch", when="@09.37.01")
     patch("v09_37_02_01.patch", when="@09.37.02.01")
 
+    def patch(self):
+        # we need the backwards compat stuff turned on
+        filter_file(
+                '(find_package\\( *cetmodules .*\\))',
+                '\\1\nset(CET_CETBUILDTOOLS_COMPAT TRUE)\ninclude(compat/CetMakeCommand)\nset(CET_WARN_DEPRECATED)',
+                'CMakeLists.txt',
+            )
+        filter_file(
+                'find_package\\( *celib *\\)',
+                'find_package( cetlib )',
+                'CMakeLists.txt',
+            )
+
     variant(
         "cxxstd",
         default="17",
@@ -85,6 +98,7 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
     depends_on("boost", type=("build", "run"))
     depends_on("canvas-root-io", type=("build", "run"))
     depends_on("canvas", type=("build", "run"))
+    depends_on("catch2", type=("build", "run"))
     depends_on("cetlib-except", type=("build", "run"))
     depends_on("cetlib", type=("build", "run"))
     depends_on("clhep", type=("build", "run"))
@@ -99,11 +113,13 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
     depends_on("lardataalg", type=("build", "run"))
     depends_on("lardataobj", type=("build", "run"))
     depends_on("messagefacility", type=("build", "run"))
-    depends_on("nusimdata", type=("build", "run"))
+    depends_on("nlohmann-json", type=("build", "run"))
+    depends_on("nufinder", type=("build", "run"))
     depends_on("nusimdata", type=("build", "run"))
     depends_on("range-v3", type=("build", "run"))
     depends_on("root", type=("build", "run"))
     depends_on("tbb", type=("build", "run"))
+    depends_on("vdt", type=("build", "run"))
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -120,6 +136,8 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
+            "-DVDT_INCLUDE_DIR={0}".format(self.spec["vdt"].prefix.include),
+            "-DVDT_LIBRARY={0}".format(self.spec["vdt"].prefix.lib),
         ]
         return args
 

@@ -76,6 +76,62 @@ class SbndaqArtdaqCore(CMakePackage, FnalGithubPackage):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"
         return url.format(self.name, version.underscored)
 
+    def fetch_remote_versions(self, concurrency=None):
+        return dict(
+            map(
+                lambda v: (v.dotted, self.url_for_version(v)),
+                [
+                    Version(d["name"][1:])
+                    for d in sjson.load(
+                        spack.util.web.read_from_url(
+                            self.list_url, accept_content_type="application/json"
+                        )[2]
+                    )
+                    if d["name"].startswith("v")
+                ],
+            )
+        )
+
+    # patch("cetmodules2.patch", when="@develop")
+    # patch("v1_00_00of0.patch", when="@v1_00_00of0")
+
+    def patch(self):
+        filter_file(
+                "artdaq_core",
+                "artdaq-core",
+                "CMakeLists.txt"
+                )
+        filter_file(
+                "artdaq_core",
+                "artdaq-core",
+                "sbndaq-artdaq-core/CMakeLists.txt"
+                )
+        filter_file(
+                "artdaq_core",
+                "artdaq-core",
+                "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt"
+                )
+        filter_file(
+                "artdaq-core::artdaq-core_Data",
+                "artdaq-core::Data",
+                "sbndaq-artdaq-core/CMakeLists.txt",
+                )
+        filter_file(
+                "artdaq-core::artdaq-core_Utilities",
+                "artdaq-core::Utilities",
+                "sbndaq-artdaq-core/CMakeLists.txt",
+                )
+        filter_file(
+                "artdaq-core::artdaq-core_Data",
+                "artdaq-core::Data",
+                "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt",
+                )
+        filter_file(
+                "artdaq-core::artdaq-core_Utilities",
+                "artdaq-core::Utilities",
+                "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt",
+                )
+
     depends_on("c", type="build")
     depends_on("cxx", type="build")
     depends_on("messagefacility")

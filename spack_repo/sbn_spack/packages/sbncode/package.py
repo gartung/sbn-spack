@@ -53,6 +53,37 @@ class Sbncode(CMakePackage, FnalGithubPackage):
     patch("v09_37_01_02.patch", when="@09.37.01.02")
     patch("v09_37_01_03.patch", when="@09.37.01.03")
 
+    def patch(self):
+        filter_file(
+                'artdaq_core',
+                'artdaq-core',
+                'CMakeLists.txt',
+            )
+        filter_file(
+            r'find_package\( art REQUIRED \)',
+            'find_package( art REQUIRED )\nfind_package(Eigen)\nfind_package(larrecodnn)',
+            'CMakeLists.txt',
+            )
+
+        for d in (
+                'BeamSpillInfoRetriever/',
+                'BeamSpillInfoRetriever/BNBRetriever/',
+                'BeamSpillInfoRetriever/BNBEXTRetriever/',
+                'BeamSpillInfoRetriever/NuMIEXTRetriever/',
+                'BeamSpillInfoRetriever/NuMIRetriever/',
+                'CAFMaker/',
+            ):
+            filter_file(
+                    'artdaq_core',
+                    'artdaq-core',
+                    'sbncode/{0}/CMakeLists.txt'.format(d),
+                )
+            filter_file(
+                    'artdaq.core::artdaq-core_Utilities',
+                    'artdaq-core::Utilities',
+                    'sbncode/{0}/CMakeLists.txt'.format(d),
+                )
+
     variant(
         "cxxstd",
         default="17",
@@ -69,60 +100,70 @@ class Sbncode(CMakePackage, FnalGithubPackage):
     depends_on("cxx", type="build")
 
     # Build and link dependencies.
-    depends_on("artdaq-core")
-    depends_on("art-root-io")
     depends_on("art")
     depends_on("artdaq-core")
+    depends_on("art-root-io")
     depends_on("boost")
-    depends_on("canvas-root-io")
     depends_on("canvas")
+    depends_on("canvas-root-io")
+    depends_on("castxml")
     depends_on("cetlib-except")
     depends_on("clhep")
     depends_on("cppgsl")
-    depends_on("eigen")
-    depends_on("fftw")
-    depends_on("hep-concurrency")
-    depends_on("ifdh-art")
-    depends_on("tbb")
-    depends_on("gsl")
-    depends_on("geant4")
-    depends_on("zlib")
-    depends_on("xerces-c")
-    depends_on("larana")
-    depends_on("larcoreobj")
-    depends_on("larcore")
-    depends_on("lardataobj")
-    depends_on("lardata")
-    depends_on("larevt")
-    depends_on("pandora")
-    depends_on("larpandora")
-    depends_on("larpandoracontent")
-    depends_on("py-torch")
-    depends_on("larreco")
-    depends_on("larsim")
-    depends_on("libwda")
-    depends_on("marley")
-    depends_on("nug4")
-    depends_on("nugen")
-    depends_on("genie")
-    depends_on("ifdhc")
-    depends_on("ifbeam")
-    depends_on("libxml2")
-    depends_on("nucondb")
-    depends_on("nutools")
-    depends_on("postgresql")
-    depends_on("log4cpp")
-    depends_on("range-v3")
-    depends_on("sbnobj")
-    depends_on("sbnanaobj")
-    depends_on("sbndaq-artdaq-core")
-    depends_on("sqlite")
-    depends_on("trace")
     depends_on("dk2nudata")
     depends_on("dk2nugenie")
-    depends_on("py-srproxy")
-    depends_on("castxml")
+    depends_on("eigen")
+    depends_on("fftw")
+    depends_on("geant4")
+    depends_on("genie")
+    depends_on("gsl")
+    depends_on("hep-concurrency")
+    depends_on("ifbeam")
+    depends_on("ifdh-art")
+    depends_on("ifdhc")
+    depends_on("larana")
+    depends_on("larcore")
+    depends_on("larcoreobj")
+    depends_on("larcorealg")
+    depends_on("lardata")
+    depends_on("lardataalg")
+    depends_on("lardataobj")
+    depends_on("larevt")
+    depends_on("larfinder")
+    depends_on("larpandora")
+    depends_on("larpandoracontent")
+    depends_on("larreco")
+    depends_on("larrecodnn +tensorflow")
+    depends_on("larsim")
+    depends_on("libwda")
+    depends_on("libxml2")
+    depends_on("log4cpp")
+    depends_on("marley")
+    depends_on("messagefacility")
+    depends_on("nucondb")
+    depends_on("nug4")
+    depends_on("nugen")
+    depends_on("nurandom")
+    depends_on("nusystematics")
+    depends_on("nusimdata")
+    depends_on("nutools")
+    depends_on("pandora")
+    depends_on("postgresql")
     depends_on("py-pygccxml")
+    depends_on("py-srproxy")
+    depends_on("py-torch")
+    depends_on("py-tensorflow")
+    depends_on("range-v3")
+    depends_on("sbnanaobj")
+    depends_on("sbndaq-artdaq-core")
+    depends_on("sbnobj")
+    depends_on("sqlite")
+    depends_on("systematicstools")
+    depends_on("tbb")
+    depends_on("trace")
+    depends_on("xerces-c")
+    depends_on("zlib")
+
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -137,6 +178,9 @@ class Sbncode(CMakePackage, FnalGithubPackage):
 
     def cmake_args(self):
         # Set CMake args.
+        tdir = "{0}/lib/python{1}/site-packages/tensorflow".format(
+                self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
+                )
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
@@ -144,6 +188,9 @@ class Sbncode(CMakePackage, FnalGithubPackage):
             ),
             "-DZLIB_ROOT={0}".format(self.spec["zlib"].prefix),
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
+            "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
+            "-DTensorFlow_cc_LIBRARY:FILEPATH={0}/libtensorflow_cc.so.2".format(tdir),
+            "-DTensorFlow_framework_LIBRARY:FILEPATH={0}/libtensorflow_framework.so.2".format(tdir),
         ]
         return args
 
