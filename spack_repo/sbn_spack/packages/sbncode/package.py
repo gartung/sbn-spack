@@ -5,9 +5,9 @@
 
 import os
 
-import spack.util.spack_json as sjson
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,7 +26,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Sbncode(CMakePackage):
+class Sbncode(CMakePackage, FnalGithubPackage):
     """The eponymous package of the Sbn experiment
     framework for particle physics experiments.
     """
@@ -175,21 +175,6 @@ class Sbncode(CMakePackage):
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
         return url.format(self.name, version.underscored)
 
-    def fetch_remote_versions(self, concurrency=None):
-        return dict(
-            map(
-                lambda v: (v.dotted, self.url_for_version(v)),
-                [
-                    Version(d["name"][1:])
-                    for d in sjson.load(
-                        spack.util.web.read_from_url(
-                            self.list_url, accept_content_type="application/json"
-                        )[2]
-                    )
-                    if d["name"].startswith("v")
-                ],
-            )
-        )
 
     def cmake_args(self):
         # Set CMake args.

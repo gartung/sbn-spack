@@ -5,9 +5,9 @@
 
 import os
 
-import spack.util.spack_json as sjson
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
+from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,7 +26,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Icarusalg(CMakePackage):
+class Icarusalg(CMakePackage, FnalGithubPackage):
     """SignalProcessing for icarus
     framework for particle physics experiments.
     """
@@ -34,7 +34,7 @@ class Icarusalg(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarusalg"
     git_base = "https://github.com/SBNSoftware/icarusalg.git"
     git = git_base
-    url = "https://github.com/SBNSoftware/icarusalg/archive/refs/tags/v09_34_00.tar.gz"
+    url = "https://github.com/SBNSoftware/icarusalg/archive/refs/tags/v10_06_00_01.tar.gz"
     list_url = "https://api.github.com/repos/SBNSoftware/icarusalg/tags"
 
     version(
@@ -43,6 +43,8 @@ class Icarusalg(CMakePackage):
         git=git_base,
         get_full_repo=True,
     )
+    version(
+        "10.06.00.01", sha256="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
     version(
         "09.37.02.01", sha256="717678d1015441349b892bb19efd2b09c5b5f6349dfb25a484bc9101d761b4eb"
     )
@@ -128,22 +130,6 @@ class Icarusalg(CMakePackage):
         # url = 'https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2'
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
         return url.format(self.name, version.underscored)
-
-    def fetch_remote_versions(self, concurrency=None):
-        return dict(
-            map(
-                lambda v: (v.dotted, self.url_for_version(v)),
-                [
-                    Version(d["name"][1:])
-                    for d in sjson.load(
-                        spack.util.web.read_from_url(
-                            self.list_url, accept_content_type="application/json"
-                        )[2]
-                    )
-                    if d["name"].startswith("v")
-                ],
-            )
-        )
 
     def cmake_args(self):
         # Set CMake args        args = ['-DCMAKE_CXX_STANDARD={0}'.
