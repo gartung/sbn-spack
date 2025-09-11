@@ -39,12 +39,11 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
 
     version(
         "develop",
-        commit="357823a14d1f655f620bb288f6dc373b5685664f",
         git=git_base,
         get_full_repo=True,
     )
-    version(
-        "10.06.00.01", sha256="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
+    version("10.06.00.01", sha256="1ea71b17bc2877b3d617d21cd9b95523152e19917ce7ae66f48412398fcbcc59")
+
     version(
         "09.37.02.01", sha256="717678d1015441349b892bb19efd2b09c5b5f6349dfb25a484bc9101d761b4eb"
     )
