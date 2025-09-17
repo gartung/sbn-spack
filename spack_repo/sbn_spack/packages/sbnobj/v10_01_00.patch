@@ -1,0 +1,30 @@
+--- sbnobj/sbnobj/Common/CRT/CMakeLists.txt	1969-12-31 18:00:00.000000000 -0600
++++ spack-src/sbnobj/Common/CRT/CMakeLists.txt	2025-09-17 12:29:34.201990721 -0500
+@@ -10,6 +10,7 @@
+     cetlib_except::cetlib_except
+     lardataobj::Simulation
+     larcorealg::Geometry
++    nusimdata::SimulationBase
+   )
+ 
+ art_dictionary(DICTIONARY_LIBRARIES sbnobj::Common_CRT)
+--- sbnobj/sbnobj/ICARUS/CRT/CMakeLists.txt	1969-12-31 18:00:00.000000000 -0600
++++ spack-src/sbnobj/ICARUS/CRT/CMakeLists.txt	2025-09-17 12:29:58.333031117 -0500
+@@ -4,6 +4,7 @@
+   LIBRARIES
+     cetlib_except::cetlib_except
+     lardataobj::Simulation
++    nusimdata::SimulationBase
+   )
+ 
+ art_dictionary(DICTIONARY_LIBRARIES sbnobj::ICARUS_CRT)
+--- sbnobj/sbnobj/SBND/CRT/CMakeLists.txt	1969-12-31 18:00:00.000000000 -0600
++++ spack-src/sbnobj/SBND/CRT/CMakeLists.txt	2025-09-17 12:30:04.720041812 -0500
+@@ -13,6 +13,7 @@
+     cetlib_except::cetlib_except
+     lardataobj::Simulation
+     lardataobj::RecoBase
++    nusimdata::SimulationBase
+   )
+ 
+ art_dictionary(DICTIONARY_LIBRARIES sbnobj::SBND_CRT)

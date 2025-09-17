@@ -64,6 +64,7 @@ class Sbnobj(CMakePackage, FnalGithubPackage):
     patch("v09_12_05.patch", when="@09.12.05")
     patch("v09_12_04.patch", when="@09.12.04")
     patch("cetmodules2.patch", when="@develop")
+    patch("v10_01_00.patch", when="@10.01.00")
 
     # Build-only dependencies.
     depends_on("cmake@3.11:")
