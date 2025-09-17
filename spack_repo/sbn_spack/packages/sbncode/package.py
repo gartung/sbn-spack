@@ -67,8 +67,8 @@ class Sbncode(CMakePackage, FnalGithubPackage):
 
         for d in (
                 'BeamSpillInfoRetriever/',
-                'BeamSpillInfoRetriever/BNBRetriever/',
-                'BeamSpillInfoRetriever/BNBEXTRetriever/',
+                'BeamSpillInfoRetriever/SBNBRetriever/',
+                'BeamSpillInfoRetriever/SBNBEXTRetriever/',
                 'BeamSpillInfoRetriever/NuMIEXTRetriever/',
                 'BeamSpillInfoRetriever/NuMIRetriever/',
                 'CAFMaker/',
