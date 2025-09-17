@@ -58,7 +58,7 @@ class IcarusSignalProcessing(CMakePackage, FnalGithubPackage):
     depends_on("cxx", type="build")
 
     # Build and link dependencies.
-    depends_on("fftw", type=("build", "run"))
+    depends_on("fftw precision=double,float,long_double,quad", type=("build", "run"))
     depends_on("root", type=("build", "run"))
     depends_on("nlohmann-json", type=("build", "run"))
 
