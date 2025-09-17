@@ -95,43 +95,7 @@ class SbndaqArtdaqCore(CMakePackage, FnalGithubPackage):
     # patch("cetmodules2.patch", when="@develop")
     # patch("v1_00_00of0.patch", when="@v1_00_00of0")
 
-    def patch(self):
-        with when('^artdaq-core@4.0.0:')
-            filter_file(
-                    "artdaq_core",
-                    "artdaq-core",
-                    "CMakeLists.txt"
-                    )
-            filter_file(
-                    "artdaq_core",
-                    "artdaq-core",
-                    "sbndaq-artdaq-core/CMakeLists.txt"
-                    )
-            filter_file(
-                    "artdaq_core",
-                    "artdaq-core",
-                    "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt"
-                    )
-            filter_file(
-                    "artdaq-core::artdaq-core_Data",
-                    "artdaq-core::Data",
-                    "sbndaq-artdaq-core/CMakeLists.txt",
-                    )
-            filter_file(
-                    "artdaq-core::artdaq-core_Utilities",
-                    "artdaq-core::Utilities",
-                    "sbndaq-artdaq-core/CMakeLists.txt",
-                    )
-            filter_file(
-                    "artdaq-core::artdaq-core_Data",
-                    "artdaq-core::Data",
-                    "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt",
-                    )
-            filter_file(
-                    "artdaq-core::artdaq-core_Utilities",
-                    "artdaq-core::Utilities",
-                    "sbndaq-artdaq-core/BuildInfo/CMakeLists.txt",
-                    )
+    patch('artdaq-core-4.0.patch', when='^artdaq-core@v4:')
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")

@@ -1,0 +1,62 @@
+--- sbndaq-artdaq-core-1_10_03/CMakeLists.txt	2024-11-13 11:22:23.000000000 -0600
++++ spack-src/CMakeLists.txt	2025-09-17 10:44:01.964778096 -0500
+@@ -1,5 +1,5 @@
+ # ======================================================================
+-#  icartdaq_core main build file
++#  icartdaq-core main build file
+ #
+ #  cd .../path/to/build/directory
+ #  source .../path/to/artdaq-demo/ups/setup_for_development
+@@ -10,7 +10,7 @@
+ 
+ find_package(cetmodules 3.16.00 REQUIRED)
+ 
+-project(sbndaq_artdaq_core VERSION 1.10.03)
++project(sbndaq_artdaq-core VERSION 1.10.03)
+ 
+ include(CetCMakeEnv)
+ cet_cmake_env()
+@@ -55,9 +55,9 @@
+   endif()
+ endif()
+ 
+-message("Searching ${sbndaq_artdaq_core_EXEC_PREFIX} for icarus or sbnd qualifiers")
+-string(FIND "x${sbndaq_artdaq_core_EXEC_PREFIX}" "icarus" ICARUS_FOUND)
+-string(FIND "x${sbndaq_artdaq_core_EXEC_PREFIX}" "sbnd" SBND_FOUND)
++message("Searching ${sbndaq_artdaq-core_EXEC_PREFIX} for icarus or sbnd qualifiers")
++string(FIND "x${sbndaq_artdaq-core_EXEC_PREFIX}" "icarus" ICARUS_FOUND)
++string(FIND "x${sbndaq_artdaq-core_EXEC_PREFIX}" "sbnd" SBND_FOUND)
+ 
+ IF (ICARUS_FOUND EQUAL -1)
+    MESSAGE ("No ICARUS_BUILD?")
+@@ -80,7 +80,7 @@
+ ENDIF()
+ 
+ 
+-find_package( artdaq_core QUIET REQUIRED EXPORT)
++find_package( artdaq-core QUIET REQUIRED EXPORT)
+ find_package( TRACE QUIET REQUIRED EXPORT)
+ find_package( cetlib QUIET REQUIRED EXPORT )
+ find_package( cetlib_except QUIET REQUIRED EXPORT)
+--- sbndaq-artdaq-core-1_10_03/sbndaq-artdaq-core/CMakeLists.txt	2024-11-13 11:22:23.000000000 -0600
++++ spack-src/sbndaq-artdaq-core/CMakeLists.txt	2025-09-17 10:44:01.966778099 -0500
+@@ -1,6 +1,6 @@
+ set ( LIBRARY_CORE_LIB_LIST
+-    artdaq_core::artdaq-core_Data
+-    artdaq_core::artdaq-core_Utilities
++    artdaq-core::Data
++    artdaq-core::Utilities
+     cetlib::cetlib
+     cetlib_except::cetlib_except
+ )
+--- sbndaq-artdaq-core-1_10_03/sbndaq-artdaq-core/BuildInfo/CMakeLists.txt	2024-11-13 11:22:23.000000000 -0600
++++ spack-src/sbndaq-artdaq-core/BuildInfo/CMakeLists.txt	2025-09-17 10:44:01.967778101 -0500
+@@ -23,7 +23,7 @@
+ 
+ cet_make_library( LIBRARY_NAME sbndaq-artdaq-core_BuildInfo
+                   SOURCE  ${CMAKE_CURRENT_BINARY_DIR}/GetPackageBuildInfo.cc
+-                  LIBRARIES artdaq_core::artdaq-core_Data
++                  LIBRARIES artdaq-core::Data
+                  )
+ 
+ install_headers()
