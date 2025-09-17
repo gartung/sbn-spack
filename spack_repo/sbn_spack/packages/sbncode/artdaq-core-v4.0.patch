@@ -1,0 +1,56 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ceb8f430..4a1dc88c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -63,10 +63,10 @@ find_package( larreco REQUIRED )
+ find_package( larrecodnn REQUIRED )
+ find_package( larpandora REQUIRED )
+ find_package( larpandoracontent REQUIRED )
+-find_package( artdaq_core EXPORT REQUIRED )
++find_package( artdaq-core EXPORT REQUIRED )
+ find_package( sbnobj REQUIRED )
+ find_package( sbnanaobj REQUIRED )
+-find_package( sbndaq_artdaq_core EXPORT REQUIRED )
++find_package( sbndaq_artdaq-core EXPORT REQUIRED )
+ find_package( ifdh_art REQUIRED )
+ find_package( ifbeam REQUIRED )
+ find_package( libwda REQUIRED )
+diff --git a/sbncode/BeamSpillInfoRetriever/CMakeLists.txt b/sbncode/BeamSpillInfoRetriever/CMakeLists.txt
+index e7fd0971..e2b41052 100644
+--- a/sbncode/BeamSpillInfoRetriever/CMakeLists.txt
++++ b/sbncode/BeamSpillInfoRetriever/CMakeLists.txt
+@@ -23,7 +23,7 @@ art_make_library(
+         ifbeam::ifbeam
+         ifdh_art::IFBeam_service
+         messagefacility::MF_MessageLogger
+-        sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays_SBND
++        sbndaq_artdaq-core::sbndaq-artdaq-core_Overlays_SBND
+         sbnobj::Common_POTAccounting
+         sbn_MWRData
+         larcorealg::CoreUtils
+diff --git a/sbncode/BeamSpillInfoRetriever/NuMIEXTRetriever/CMakeLists.txt b/sbncode/BeamSpillInfoRetriever/NuMIEXTRetriever/CMakeLists.txt
+index f11657b0..3d2f65df 100644
+--- a/sbncode/BeamSpillInfoRetriever/NuMIEXTRetriever/CMakeLists.txt
++++ b/sbncode/BeamSpillInfoRetriever/NuMIEXTRetriever/CMakeLists.txt
+@@ -9,7 +9,7 @@ cet_build_plugin(NuMIEXTRetriever art::module
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays_Common
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays_ICARUS
+-        artdaq_core::artdaq-core_Utilities
++        artdaq-core::artdaq-core_Utilities
+         lardata::Utilities
+         larcore::Geometry_AuxDetGeometry_service
+ )
+diff --git a/sbncode/BeamSpillInfoRetriever/NuMIRetriever/CMakeLists.txt b/sbncode/BeamSpillInfoRetriever/NuMIRetriever/CMakeLists.txt
+index d5fd24b7..ce3c6687 100644
+--- a/sbncode/BeamSpillInfoRetriever/NuMIRetriever/CMakeLists.txt
++++ b/sbncode/BeamSpillInfoRetriever/NuMIRetriever/CMakeLists.txt
+@@ -14,7 +14,7 @@ cet_build_plugin(NuMIRetriever art::module
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays_Common
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays
+         sbndaq_artdaq_core::sbndaq-artdaq-core_Overlays_ICARUS
+-        artdaq_core::artdaq-core_Utilities
++        artdaq-core::artdaq-core_Utilities
+ )
+ 
+ install_headers()

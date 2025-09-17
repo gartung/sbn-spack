@@ -52,37 +52,14 @@ class Sbncode(CMakePackage, FnalGithubPackage):
     patch("v09_37_02_03.patch", when="@09.37.02.03")
     patch("v09_37_01_02.patch", when="@09.37.01.02")
     patch("v09_37_01_03.patch", when="@09.37.01.03")
+    patch("artdaq-core-v4.0.patch", when="^artdaq-core@v4:")
 
     def patch(self):
-        filter_file(
-                'artdaq_core',
-                'artdaq-core',
-                'CMakeLists.txt',
-            )
         filter_file(
             r'find_package\( art REQUIRED \)',
             'find_package( art REQUIRED )\nfind_package(Eigen)\nfind_package(larrecodnn)',
             'CMakeLists.txt',
             )
-
-        for d in (
-                'BeamSpillInfoRetriever/',
-                'BeamSpillInfoRetriever/SBNBRetriever/',
-                'BeamSpillInfoRetriever/SBNBEXTRetriever/',
-                'BeamSpillInfoRetriever/NuMIEXTRetriever/',
-                'BeamSpillInfoRetriever/NuMIRetriever/',
-                'CAFMaker/',
-            ):
-            filter_file(
-                    'artdaq_core',
-                    'artdaq-core',
-                    'sbncode/{0}/CMakeLists.txt'.format(d),
-                )
-            filter_file(
-                    'artdaq.core::artdaq-core_Utilities',
-                    'artdaq-core::Utilities',
-                    'sbncode/{0}/CMakeLists.txt'.format(d),
-                )
 
     variant(
         "cxxstd",
