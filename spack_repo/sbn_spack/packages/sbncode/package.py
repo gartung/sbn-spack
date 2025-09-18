@@ -92,6 +92,7 @@ class Sbncode(CMakePackage, FnalGithubPackage):
     depends_on("eigen")
     depends_on("fftw")
     depends_on("geant4")
+    depends_on("geant4reweight")
     depends_on("genie")
     depends_on("gsl")
     depends_on("hep-concurrency")

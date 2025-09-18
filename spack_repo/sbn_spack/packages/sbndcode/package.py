@@ -75,6 +75,7 @@ class Sbndcode(CMakePackage, FnalGithubPackage):
     depends_on("ifdh-art", type=("build", "run"))
     depends_on("tbb", type=("build", "run"))
     depends_on("geant4", type=("build", "run"))
+    depends_on("geant4reweight", type=("build", "run"))
     depends_on("xerces-c", type=("build", "run"))
     depends_on("larana", type=("build", "run"))
     depends_on("larcoreobj", type=("build", "run"))
