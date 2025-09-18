@@ -124,7 +124,6 @@ class Sbndcode(CMakePackage, FnalGithubPackage):
         # Set CMake args.
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
-            ),
         ]
         return args
 
