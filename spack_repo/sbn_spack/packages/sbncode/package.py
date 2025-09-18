@@ -153,6 +153,11 @@ class Sbncode(CMakePackage, FnalGithubPackage):
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
         return url.format(self.name, version.underscored)
 
+    @property
+    def cmake_prefix_paths(self):
+        return "{0}/lib/python{1}/site-packages/torch".format(
+                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2))
+
 
     def cmake_args(self):
         # Set CMake args.
@@ -161,9 +166,6 @@ class Sbncode(CMakePackage, FnalGithubPackage):
                 )
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
-            "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
-                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
-            ),
             "-DZLIB_ROOT={0}".format(self.spec["zlib"].prefix),
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
             "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
