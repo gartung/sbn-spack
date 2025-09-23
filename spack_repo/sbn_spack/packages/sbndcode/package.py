@@ -36,6 +36,7 @@ class Sbndcode(CMakePackage, FnalGithubPackage):
     git = git_base
 
     version("develop", branch="develop", git=git_base, get_full_repo=True)
+    version("10.10.03.01", tag="v10_10_03_01", git=git_base, get_full_repo=True)
     version("10.06.01", tag="v10_06_01", git=git_base, get_full_repo=True)
     version("09.32.00", tag="v09_32_00", git=git_base, get_full_repo=True)
     version("09.10.00", tag="v09_10_00", git=git_base, get_full_repo=True)
