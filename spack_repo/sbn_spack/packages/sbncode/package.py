@@ -127,7 +127,7 @@ class Sbncode(CMakePackage, FnalGithubPackage):
     depends_on("nusystematics")
     depends_on("nusimdata")
     depends_on("nutools")
-    depends_on("pandora")
+    depends_on("pandorasdk")
     depends_on("postgresql")
     depends_on("py-pygccxml")
     depends_on("py-srproxy")

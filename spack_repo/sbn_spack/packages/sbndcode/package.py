@@ -84,7 +84,7 @@ class Sbndcode(CMakePackage, FnalGithubPackage):
     depends_on("lardataobj", type=("build", "run"))
     depends_on("lardata", type=("build", "run"))
     depends_on("larevt", type=("build", "run"))
-    depends_on("pandora", type=("build", "run"))
+    depends_on("pandorasdk", type=("build", "run"))
     depends_on("larpandora", type=("build", "run"))
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("py-torch", type=("build", "run"))
