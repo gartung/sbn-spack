@@ -48,7 +48,7 @@ class Sbnobj(CMakePackage):
         git=git_base,
         get_full_repo=True,
     )
-    version("10.01.00", sha256="f0df159da2b94dbd77c61f065d18b3124d44b90aee229fa4ca67c9f3aadbff53") # FIXME
+    version("10.01.00", sha256="f0df159da2b94dbd77c61f065d18b3124d44b90aee229fa4ca67c9f3aadbff53")
     version("09.19.05", sha256="2e520d8cf0433790964bbb911e4f7d36cc4b0cc29133c11df838684fdbe195c0")
     version("09.19.04", sha256="78b7c15159ec33db8beb5105795ff026a5e251dc0a1bbe4845725e1a02633ba1")
     version("09.19.02", sha256="292e37da8f10549d4cdfbfef4743419d974076b4c0333823c9539faa780414bc")
@@ -68,13 +68,6 @@ class Sbnobj(CMakePackage):
     )
 
     patch("spack.patch")
-    #patch("v09_19_05.patch", when="@09.19.05")
-    #patch("v09_19_04.patch", when="@09.19.04")
-    #patch("v09_19_02.patch", when="@09.19.02")
-    #patch("v09_12_12.patch", when="@09.12.12")
-    #patch("v09_12_09.patch", when="@09.12.09")
-    #patch("v09_12_05.patch", when="@09.12.05")
-    #patch("v09_12_04.patch", when="@09.12.04")
     patch("cetmodules2.patch", when="@develop")
 
     # Build-only dependencies.
@@ -142,11 +135,6 @@ class Sbnobj(CMakePackage):
         # Set CMake args.
         args = ["-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value)]
         return args
-
-    #def flag_handler(self, name, flags):
-    #    if name == "cxxflags" and self.spec.compiler.name == "gcc":
-    #        flags = ['-std=gnu++17'] + flags
-    #    return (flags, None, None)
 
     def setup_build_environment(self, spack_env):
         spack_env.set("CETBUILDTOOLS_VERSION", self.spec["cetmodules"].version)

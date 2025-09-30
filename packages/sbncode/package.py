@@ -32,10 +32,7 @@ class Sbncode(CMakePackage):
 
     url = "https://github.com/SBNSoftware/sbncode/archive/refs/tags/v09_35_01.tar.gz"
     git = "https://github.com/SBNSoftware/sbncode.git"
-    #git_base = "https://github.com/SBNSoftware/sbncode.git"
-    #list_url = "https://api.github.com/repos/SBNSoftware/sbncode/tags"
 
-    #version("develop", branch="develop", git=git_base, get_full_repo=True)
     version("v10_06_00_01", commit="fb929f3d9ac910bec5da48ca8adcc1bad0412eb6", submodules=True)
     version("v10_04_07", commit="412514c73b41c88fcbd9ffcf0632ed186703a2d3", submodules=True)
     version("v10_04_06_p01",commit="41ef8493069b0f07287e43ed66873484c0a203d5", submodules=True)
@@ -60,10 +57,6 @@ class Sbncode(CMakePackage):
     patch("v09_37_01_02.patch", when="@09.37.01.02")
     patch("v09_37_01_03.patch", when="@09.37.01.03")
     patch("v09_91_01.patch", when="@09.91.01")
-    #patch("v09_91_02_01.patch", when="@09.91.02.01")
-    #patch("v09_91_02_01.patch", when="@v09_93_01_p01")
-    #patch("v09_91_02_01.patch", when="@v09_93_01_p02")
-    #patch("v09_91_02_01.patch", when="@09.93.01")
 
     variant(
         "cxxstd",
@@ -75,91 +68,21 @@ class Sbncode(CMakePackage):
 
     def patch(self):
         filter_file('find_package\( art REQUIRED \)', 'find_package( art REQUIRED )\nfind_package( Eigen3 REQUIRED )\nfind_package( larrecodnn REQUIRED )','CMakeLists.txt')
-        #filter_file("find_package\( art REQUIRED", 'TESTING NOW','CMakeLists.txt')
 
     # Build-only dependencies.
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
 
-    # Build and link dependencies.
-    ##depends_on("artdaq-core")
-    ##depends_on("art-root-io")
-    ##depends_on("art")
-    ##depends_on("boost")
-    ##depends_on("canvas-root-io")
-    ##depends_on("canvas")
-    ##depends_on("cetlib-except")
-    ##depends_on("clhep")
-    ##depends_on("cppgsl")
-    # depends_on("eigen")
-    ##depends_on("fftw")
-    ##depends_on("hep-concurrency")
-    ##depends_on("ifdh-art")
-    ##depends_on("tbb")
-    ##depends_on("gsl")
-    ##depends_on("geant4")
-    ##depends_on("zlib")
-    ##depends_on("xerces-c")
-    ##depends_on("larana")
-    ##depends_on("larcoreobj")
-    ##depends_on("larcore")
-    ##depends_on("lardataobj")
-    ##depends_on("lardata")
-    ##depends_on("larevt")
     depends_on("larrecodnn")
     depends_on("larsoft")# added
-    depends_on("larsoft@10.06.00", when="@v10_06_00_01")
-    depends_on("larsoft@09.91.02", when="@09.91.02.01")# added
-    ##depends_on("larg4")# added
-    ##depends_on("pandora")
-    ##depends_on("larpandora")
-    ##depends_on("larpandoracontent")
-    ##depends_on("py-torch")
-    #depends_on("py-tensorflow")
-    ##depends_on("larreco")
-    ##depends_on("larreco@09.25.04", when="@09.91.02.01")
-    ##depends_on("larsim")
-    ##depends_on("libwda")
-    ##depends_on("marley")
-    ##depends_on("nug4")
-    ##depends_on("nugen")
-    ##depends_on("genie")
     depends_on("genie-xsec") # added, pulled from fnal_art
-    depends_on("genie-xsec@3.04.00", when="@v10_06_00_01")
-    ##depends_on("ifdhc")
-    ##depends_on("ifbeam")
-    ##depends_on("libxml2")
-    ##depends_on("nucondb")
-    ##depends_on("nutools")
-    ##depends_on("postgresql")
-    ##depends_on("log4cpp")
-    ##depends_on("range-v3")
-    ##depends_on("sbnobj")
-    ##depends_on("sbnobj@09.19.04", when="@09.91.02.01")
-    ##depends_on("sbnanaobj")
     depends_on("sbndaq-artdaq-core")
-    depends_on("sbndaq-artdaq-core@v1_10_06", when="@v10_06_00_01")
-    ##depends_on("sqlite")
-    ##depends_on("trace")
-    ##depends_on("dk2nudata")
-    ##depends_on("dk2nugenie")
-    ##depends_on("py-srproxy")
-    ##depends_on("castxml")
-    ##depends_on("py-pygccxml")
-
-    # depends_on("py-larcv")
     depends_on("larcv2")
-    depends_on("larcv2@2_2_6", when="@v10_06_00_01")
-    ##depends_on("systematicstools")
     depends_on("nusystematics")
-    ##depends_on("protobuf")
-    ###depends_on("nusimdata")
     depends_on("sbndata")
-    depends_on("sbndata@01_07", when="@v10_06_00_01")
 
     depends_on("sbnalg", when="@v10_04_07:")
-    depends_on("sbnalg@10.06.00.01", when="@v10_06_00_01")
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -168,24 +91,8 @@ class Sbncode(CMakePackage):
 
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
-        print("url for version: ", url.format(self.name, version.underscored))
         return url.format(self.name, version.underscored)
 
-    #def fetch_remote_versions(self, concurrency=None):
-    #    return dict(
-    #        map(
-    #            lambda v: (v.dotted, self.url_for_version(v)),
-    #            [
-    #                Version(d["name"][1:])
-    #                for d in sjson.load(
-    #                    spack.util.web.read_from_url(
-    #                        self.list_url, accept_content_type="application/json"
-    #                    )[2]
-    #                )
-    #                if d["name"].startswith("v")
-    #            ],
-    #        )
-    #    )
     def cmake_args(self):
         # Set CMake args.
         args = [
@@ -222,34 +129,18 @@ class Sbncode(CMakePackage):
     def setup_build_environment(self, spack_env):
         spack_env.prepend_path("LD_LIBRARY_PATH", self.spec["root"].prefix.lib)
         spack_env.prepend_path("ROOT_X3d", self.spec["root"].prefix.include)
-        #spack_env.prepend_path("LD_LIBRARY_PATH", self.spec["larcv2"].prefix.lib)
-        # Binaries.
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
-        # Ensure we can find plugin libraries.
         spack_env.prepend_path("CET_PLUGIN_PATH", os.path.join(self.build_directory, "lib"))
-        # Ensure Root can find headers for autoparsing.
-        #for d in self.spec.traverse(
-        #    root=False, cover="nodes", order="post", deptype=("link"), direction="children"
-        #):
-        #    spack_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
-        #spack_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
-        #spack_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["root"].prefix.lib.root)
-        #spack_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["nusimdata"].prefix.lib.nusimdata)
-        #spack_env.prepend_path("ROOT_INCLUDE_PATH", self.spec["nusimdata"].prefix.include.nusimdata)
 
         # Perl modules.
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         # Larcv modules
-        #spack_env.prepend_path("LARCV_LIBDIR", self.spec["larcv2"].prefix.lib)
-        #spack_env.prepend_path("LARCV_INCDIR", self.spec["larcv2"].prefix.include)
         spack_env.set(
                 "Torch_DIR",
                 "{0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
                     self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
                 ),
             )
-        # Cleaup.
-        #sanitize_environments(spack_env)
 
     def setup_run_environment(self, run_env):
         run_env.prepend_path("LD_LIBRARY_PATH", self.spec["python"].prefix.lib)
@@ -257,21 +148,9 @@ class Sbncode(CMakePackage):
         run_env.prepend_path("PATH", os.path.join(self.prefix, "bin"))
         # Ensure we can find plugin libraries.
         run_env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)
-        # Ensure Root can find headers for autoparsing.
-        #for d in self.spec.traverse(
-        #    root=False, cover="nodes", order="post", deptype=("link"), direction="children"
-        #):
-        #    run_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
-        #    run_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
-        #    run_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["root"].prefix.lib.root)
-        #    # run_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["nusimdata"].prefix.lib.nusimdata)
-        #    # run_env.prepend_path("ROOT_INCLUDE_PATH", self.spec["nusimdata"].prefix.include.nusimdata)
         # Perl modules.
         run_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
         # Larcv modules
-        #run_env.prepend_path("LARCV_LIBDIR", self.spec["larcv2"].prefix.lib)
-        #run_env.prepend_path("LARCV_INCDIR", self.spec["larcv2"].prefix.include)
-        # fcl file prefix
         run_env.prepend_path("FHICL_FILE_PATH", self.prefix.fcl)
         run_env.prepend_path("FHICL_INCLUDE_PATH", self.prefix.fcl)
         run_env.prepend_path("ROOT_INCLUDE_PATH", self.spec['artdaq-core'].prefix.include)
@@ -287,12 +166,8 @@ class Sbncode(CMakePackage):
         # Ensure Root can find headers for autoparsing.
         spack_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
         spack_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["root"].prefix.lib.root)
-        # spack_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["nusimdata"].prefix.lib.nusimdata)
-        # spack_env.prepend_path("ROOT_INCLUDE_PATH", self.spec["nusimdata"].prefix.include.nusimdata)
         # Perl modules.
         spack_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
         # Larcv modules
-        #spack_env.prepend_path("LARCV_LIBDIR", self.spec["larcv2"].prefix.lib)
-        #spack_env.prepend_path("LARCV_INCDIR", self.spec["larcv2"].prefix.include)
         # Cleanup.
         sanitize_environments(spack_env)

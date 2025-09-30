@@ -26,9 +26,6 @@ class ArtdaqRuncontrolGui(CMakePackage):
     depends_on("qt@5.15:")
     depends_on("xmlrpc-c")
 
-    patch("patch/master.patch", when="@master")
-    patch("patch/develop.patch", when="@develop")
-    patch("patch/v1_03_06.patch", when="@v1_03_06")
     patch("patch/v1_03_05.patch", when="@v1_03_05")
 
     def url_for_version(self, version):

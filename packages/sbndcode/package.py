@@ -78,19 +78,9 @@ class Sbndcode(CMakePackage):
     depends_on("postgresql", type=("build", "run"))
     depends_on("dk2nudata", type=("build", "run"))
 
-    #depends_on("larg4", type=("build", "run"))
-    #depends_on("larcorealg", type=("build", "run"))
-    #depends_on("nuevdb", type=("build", "run"))
     depends_on("cry", type=("build", "run"))
     depends_on("dk2nugenie", type=("build", "run"))
-    #depends_on("log4cpp", type=("build", "run"))
     depends_on("rstartree", type=("build", "run"))
-    #depends_on("wirecell", type=("build", "run"))
-    #depends_on("hdf5", type=("build", "run"))
-    #depends_on("hep-hpc", type=("build", "run"))
-    #depends_on("genie-xsec", type=("build", "run"))
-    #depends_on("nugen", type=("build", "run"))
-    #depends_on("larsimdnn", type=("build", "run"))
 
     depends_on("vdt", type=("build", "run"))
     depends_on("sbncode", type=("build", "run"))
@@ -160,10 +150,6 @@ class Sbndcode(CMakePackage):
         # Ensure we can find plugin libraries.
         run_env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)
         # Ensure Root can find headers for autoparsing.
-        #for d in self.spec.traverse(
-        #    root=False, cover="nodes", order="post", deptype=("link"), direction="children"
-        #):
-        #    run_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
         run_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
         # Perl modules.
         run_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
@@ -174,8 +160,6 @@ class Sbndcode(CMakePackage):
         run_env.prepend_path("FHICL_INCLUDE_PATH", self.prefix.fcl)
         # Add to wire-cell path
         run_env.prepend_path("WIRECELL_PATH", os.path.join(self.spec['wirecell'].prefix))
-        # Cleaup.
-        # sanitize_environments(run_env)
 
 
     def setup_dependent_build_environment(self, spack_env, dependent_spec):

@@ -108,7 +108,6 @@ class Icarusalg(CMakePackage):
             depends_on("ninja", type="build")
 
     def url_for_version(self, version):
-        # url = 'https://cdcvs.fnal.gov/cgi-bin/git_archive.cgi/cvs/projects/{0}.v{1}.tbz2'
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
         return url.format(self.name, version.underscored)
 
@@ -129,7 +128,6 @@ class Icarusalg(CMakePackage):
         )
 
     def cmake_args(self):
-        # Set CMake args        args = ['-DCMAKE_CXX_STANDARD={0}'.
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
@@ -140,8 +138,6 @@ class Icarusalg(CMakePackage):
 
     def setup_build_environment(self, spack_env):
 
-        # easier to set these than patch the CMakeLists.txts for now
-        # but there sure are a lot of them...
         spack_env.set("BOOST_INC", self.spec["boost"].prefix.include)
         spack_env.set("CANVAS_INC", self.spec["canvas"].prefix.include)
         spack_env.set("CANVAS_ROOT_IO_INC", self.spec["canvas-root-io"].prefix.include)
@@ -180,15 +176,6 @@ class Icarusalg(CMakePackage):
         run_env.prepend_path("PATH", self.prefix.bin)
         run_env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)
         # Ensure Root can find headers for autoparsing.
-        #for d in self.spec.traverse(
-        #    root=False,
-        #    cover="nodes",
-        #    order="post",
-        #    deptype=("link"),
-        #    direction="children",
-        #):
-        #    run_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
-        #run_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)
         # Perl modules.
         run_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
         #

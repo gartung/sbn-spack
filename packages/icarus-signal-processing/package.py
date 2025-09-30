@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
 import os
-import sys
 
 from spack.package import *
 import spack.util.spack_json as sjson
@@ -91,7 +90,6 @@ class IcarusSignalProcessing(CMakePackage):
         )
 
     def patch(self):
-        print("AAAAA")
         filter_file('find_package\(FFTW3q REQUIRED EXPORT\)', '', 'CMakeLists.txt')
         filter_file('find_package\(FFTW3l REQUIRED EXPORT\)', '', 'CMakeLists.txt')
         filter_file('isnan', 'std::isnan','icarus_signal_processing/WaveformTools.h')
