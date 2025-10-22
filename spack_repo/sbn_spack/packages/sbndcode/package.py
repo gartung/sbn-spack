@@ -54,7 +54,6 @@ class Sbndcode(CMakePackage, FnalGithubPackage):
 
     # Build-only dependencies.
     depends_on("cmake@3.11:")
-    depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
     depends_on("c", type="build")
     depends_on("cxx", type="build")
