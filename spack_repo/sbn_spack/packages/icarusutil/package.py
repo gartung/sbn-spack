@@ -54,7 +54,6 @@ class Icarusutil(CMakePackage, FnalGithubPackage):
     depends_on("larbatch")
     depends_on("py-pycurl")
     depends_on("cetmodules", type="build")
-    depends_on("cetbuildtools", type="build")
 
     patch("cetmodules2.patch")
 
