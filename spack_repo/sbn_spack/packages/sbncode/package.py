@@ -37,7 +37,7 @@ class Sbncode(CMakePackage):
 
     version("develop", branch="develop", submodules=True, get_full_repo=True)
     version("10.11.01", tag="v10_11_01", commit="d90a687042fd24e178f9f802ea27f6fd92cedaa2", submodules=True)
-    version("10.10.05", tag="v10_10_05", commit="7901e41139aff150775492e7a3d00157d0c29278", submodules=True))
+    version("10.10.05", tag="v10_10_05", commit="7901e41139aff150775492e7a3d00157d0c29278", submodules=True)
 
     patch("v09_35_00.patch", when="@09.35.00")
     patch("v09_37_02_03.patch", when="@09.37.02.03")
