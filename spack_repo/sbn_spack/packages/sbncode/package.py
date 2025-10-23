@@ -30,22 +30,14 @@ class Sbncode(CMakePackage):
     framework for particle physics experiments.
     """
 
-    git = "https://github.com/SBNSoftware/sbncode"
-    url = f"{git}/archive/v09_37_02_03.tar.gz"
-    list_url = "https://github.com/SBNSoftware/sbncode/tags"
+    git_base = "https://github.com/SBNSoftware/sbncode"
+    git = f"{git_base}.git"
+    url = f"{git_base}/archive/v09_37_02_03.tar.gz"
+    list_url = g=f"{git_base}/tags"
 
-    version("develop", branch="develop", get_full_repo=True)
-    version("10.11.01", sha256="0db9326c3450f07cc12ce5ac2993cccc71aca4e5e4b6891d1e2d25994ba142fa")
-    version("10.10.05", sha256="33df09f35c2a695c2633d0fa928cab82439a0045ac724bd3c9b0518b67cfc50a")
-    version("10.10.03.03", sha256="74af7c691f71e86c074bd2fa7ed01b2dd5f43bebce40eea9ee33024f540095c9")
-    version("10.10.03.02", sha256="a9af336ed39a664ac6f38237fa5d472844b150222fd5da14f32e3eced0657948")
-    version("10.10.03.01", sha256="0560a1ed9ec00b8f6cfd05bf3bd4a4f3857a53bad401742a29588391168ccfe9")
-    version("10.10.03", sha256="5e42460abe7672d026e116377927308ca28f2c8623ea40b3e4d8932dc00666eb")
-    version("10.10.02", sha256="6abe8765d316e866bcbdf5f50fa4b9cc94c30c2fa837a52fd4066d109eb78dd2")
-    version("10.09.00", sha256="3313a74dfe2823d3cc03870a8e4cccfa987b18c77ce3c51f080fa1f77388d685")
-    version("10.06.00.06", sha256="e9d186c80577dfaa7ea84018689b7811390f7724252ff9a089af782d1a00a68c")
-    version("10.06.00.05", sha256="83509ee8bb7bef9a59ced9f236437ab27b8a53d7364ae950c52f77abef80e185")
-    version("09.37.02.03", sha256="1d287d1dd3df5c2108154660f9846ce7776a69cb4861d0f89beea69e0c60fbce")
+    version("develop", branch="develop", submodules=True, get_full_repo=True)
+    version("10.11.01", tag="v10_11_01", commit="d90a687042fd24e178f9f802ea27f6fd92cedaa2", submodules=True)
+    version("10.10.05", tag="v10_10_05", commit="7901e41139aff150775492e7a3d00157d0c29278", submodules=True))
 
     patch("v09_35_00.patch", when="@09.35.00")
     patch("v09_37_02_03.patch", when="@09.37.02.03")
