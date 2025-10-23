@@ -32,25 +32,28 @@ class Sbnobj(CMakePackage):
     """
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbnobj"
-    git_base = "https://cdcvs.fnal.gov/projects/sbnobj"
-    git_base = "https://github.com/SBNSoftware/sbnobj.git"
-    git = git_base
+#    git_base = "https://cdcvs.fnal.gov/projects/sbnobj"
+    git_base = "https://github.com/SBNSoftware/sbnobj"
+    git = f"{git_base}.git"
+    url = f"{git_base}/archive/v10_03_00.tar.gz"
     list_url = "https://github.com/SBNSoftware/sbnobj/tags"
 
     version(
         "develop",
         commit="821c5e24aa509b4e1ba0eda064d3ce5f3fbce1a2",
-        git=git_base,
+        git=git,
         get_full_repo=True,
     )
-    version("10.02.01", tag="v10_02_01", git=git_base, get_full_repo=True)
-    version("10.01.00", tag="v10_01_00", git=git_base, get_full_repo=True)
-    version("09.12.12", sha256="60f4f1d437cad1b1573c5f56186a48edbeab1431ccdeb0bcbe8d62fc3c7b21b0")
-    version("09.12.09", sha256="4905f82711ac35fcdb732500ce1a33cee83f38a66a116d3d30aeeca749ba1313")
-    version("09.12.05", tag="v09_12_05", git=git_base, get_full_repo=True)
-    version("09.12.04", tag="v09_12_04", git=git_base, get_full_repo=True)
-    version("09.09.00", tag="v09_09_00", git=git_base, get_full_repo=True)
-    version("09.09.01", tag="v09_09_01", git=git_base, get_full_repo=True)
+    version("10.03.00", sha256="d5b96c6d63d2deec94a3abab426925303f4bde40209b6270b1fa41a9a83f2689")
+    version("10.02.02", sha256="513cc5f122bbc78ac78a36da53b8d24bd5361d68e376f009477f05e598a2dc7e")
+    version("10.02.01", sha256="619910e7419f493c37121c318c9d77c00024ff87a8489e79875ebfad14dd5232")
+    version("10.02.00", sha256="bc5722291985be4e2c1d25680dec0c1bf8ed357261d6c1f1724eacf401085385")
+    version("10.01.02", sha256="0cd4fc9c0fec7a2e0752b4905824209d1b4bcaeb22cd9c49eafc1f358d822d9b")
+    version("10.01.01.01", sha256="9a9a8a56bfac26ee2094c7c10fa47fff2f2f63027d9c0fdc47e20bbafa783454")
+    version("10.01.01", sha256="5f0d85ba9598cae8ac21013cb40e5421532828b52f5c6caea7c7d45c54a43fca")
+    version("10.01.00", sha256="f0df159da2b94dbd77c61f065d18b3124d44b90aee229fa4ca67c9f3aadbff53")
+    version("10.00.10", sha256="9d85a03340a8cf39ad73204bb422849d49984ccc0a6b6c9c7fe01e7f17f275b3")
+    version("09.19.00.02", sha256="02a785f145d4670fc943296c83e36da089f6c62c1c696dd7ba95cf025949eec6")
 
     variant(
         "cxxstd",
