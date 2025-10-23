@@ -7,7 +7,6 @@ import os
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,7 +25,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Icarusalg(CMakePackage, FnalGithubPackage):
+class Icarusalg(CMakePackage):
     """SignalProcessing for icarus
     framework for particle physics experiments.
     """
@@ -53,12 +52,6 @@ class Icarusalg(CMakePackage, FnalGithubPackage):
     version("09.32.01", sha256="2e5a7d1f41bfea02721a2f3d75ba5aae97587325fde143c4d0f608b1b929aafc")
     version("09.28.01", sha256="b97e6dc10c609604850ee2a5fcf1802c7288462a8c1081cc222157656952cadb")
     version("09.28.00", sha256="ad67ed3fd1b3bfee5a8c02fee64da6548fcdfa7021bcd9025f9f32fefd7ac9c2")
-    version("09.06.00", tag="v09_06_00", git=git_base, get_full_repo=True)
-    version("09.07.00", tag="v09_07_00", git=git_base, get_full_repo=True)
-    version("09.08.00", tag="v09_08_00", git=git_base, get_full_repo=True)
-    version("09.09.00", tag="v09_09_00", git=git_base, get_full_repo=True)
-    version("09.09.01", tag="v09_09_01", git=git_base, get_full_repo=True)
-    version("09.10.01", tag="v09_10_01", git=git_base, get_full_repo=True)
 
     patch("mwm.patch", when="@09.28.01")
     patch("cetmodules2.patch", when="@develop")

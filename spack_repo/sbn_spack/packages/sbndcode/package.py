@@ -8,7 +8,6 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 def sanitize_environments(*args):
     for env in args:
@@ -26,21 +25,20 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Sbndcode(CMakePackage, FnalGithubPackage):
+class Sbndcode(CMakePackage):
     """The eponymous package of the Sbn experiment
     framework for particle physics experiments.
     """
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbncode"
-    git_base = "https://github.com/SBNSoftware/sbndcode.git"
-    git = git_base
+    git = "https://github.com/SBNSoftware/sbndcode"
+    url = f"{git}/archive/v09_32_00.tar.gz"
+    list_url = "https://api.github/repos/SBNSoftware/sbndcode/tags"
 
-    version("develop", branch="develop", git=git_base, get_full_repo=True)
-    version("10.10.03.01", tag="v10_10_03_01", git=git_base, get_full_repo=True)
-    version("10.06.01", tag="v10_06_01", git=git_base, get_full_repo=True)
-    version("09.32.00", tag="v09_32_00", git=git_base, get_full_repo=True)
-    version("09.10.00", tag="v09_10_00", git=git_base, get_full_repo=True)
-    version("09.10.01", tag="v09_10_01", git=git_base, get_full_repo=True)
+    version("develop", branch="develop", git=f"{git}.git", get_full_repo=True)
+    version("10.11.01", sha256="2bbe19cd94fafccacaef8ed819cb4cc41cd77e527a4939648eec2d8067329898")
+    version("10.10.03.03", sha256="2d783202f12abd2fee6d29ef715736e60c938cffd6a8b4fe5af6825f53e4eb26")
+    version("09.32.00", sha256="def738f4df92fc75d818041af15ce48fea9842dad96ea96d2285793b1f161bbf")
 
     patch("v09_32_00.patch", when="@9.32.00")
 

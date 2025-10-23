@@ -8,14 +8,13 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 def sanitize_environments(env, *vars):
     for var in vars:
         env.prune_duplicate_paths(var)
         env.deprioritize_system_paths(var)
 
-class Sbndaq(CMakePackage, FnalGithubPackage):
+class Sbndaq(CMakePackage):
     """Common code and utilities for SBN DAQs"""
 
     homepage = "https://github.com/SBNSoftware"

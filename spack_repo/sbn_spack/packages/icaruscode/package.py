@@ -8,7 +8,6 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -27,44 +26,33 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Icaruscode(CMakePackage, FnalGithubPackage):
+class Icaruscode(CMakePackage):
     """The eponymous package of the Icarus experiment
     framework for particle physics experiments.
     """
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icaruscode"
-    git_base = "https://github.com/SBNSoftware/icaruscode.git"
-    git = git_base
+    git_base = "https://github.com/SBNSoftware/icaruscode"
+    git = f"{git_base}.git"
+    url = f"{git_base}/archive/v09_35_00.tar.gz"
+    list_url = "https://api.github.com/repos/SBNSoftware/icaruscode/tags"
 
     version(
         "develop",
         branch="develop",
-        git=git_base,
+        git= f"{git_base}.git" ,
         get_full_repo=True,
     )
-    version(
-        "09.37.02.03", sha256="1762e5a05ebac100032b2bc46244a63f3bc454f51a583da03b935a6827d7df6f"
-    )
-    version("10.06.00.01p05", tag="v10_06_00_01p05", git=git_base, get_full_repo=True)
-    version("09.37.01.03p02", tag="v09_37_01_03p02", git=git_base, get_full_repo=True)
-    version("09.37.01.vec03p02", tag="v09_37_01_03p02", git=git_base, get_full_repo=True)
-    version("09.37.01.02p02", tag="v09_37_01_02p02", git=git_base, get_full_repo=True)
-    version("09.37.01.vec02p02", tag="v09_37_01_02p02", git=git_base, get_full_repo=True)
-    version("09.35.00", tag="v09_35_00", git=git_base, get_full_repo=True)
-    version("08.43.00", tag="v08_43_00", git=git_base, get_full_repo=True)
-    version("08.41.00", tag="v08_41_00", git=git_base, get_full_repo=True)
-    version("08.40.00", tag="v08_40_00", git=git_base, get_full_repo=True)
-    version("08.39.00", tag="v08_39_00", git=git_base, get_full_repo=True)
-    version("08.50.00", tag="v08_50_00", git=git_base, get_full_repo=True)
-    version("08.50.02", tag="v08_50_02", git=git_base, get_full_repo=True)
+    version("10.06.00.06", sha256="7de2aba6d4285877d72aa04a25ef0ecc20d199cb6699e9febed590ad6dee6653")
+    version("10.06.00.04p02", sha256="a7d965bc5d1828d9eafe32bb6fbe59f86c767bb1dd525aa7baab2d1be03d8e98")
+    version("10.06.00.04p01", sha256="96cb8c6566d658e502f1049d0b3b985f7ff592f55fd6de18eaf67f9ba7b1f187")
+    version("10.06.00.04", sha256="35ccbc0aed311129197351be7a6579d6ac0ece23eeef0aba08d16c5aeb93738e")
+    version("10.06.00.01p05", sha256="604e34eaf95fb8ce8d3218ce95bd2818a93793f9f184e4caeaa19373deb1cee0")
+    version("10.06.00.01p04", sha256="4ae01238f61b326feb9d58d1b4a33c7ad8f42054ad661d012b6041bd72288c3e")
+    version("10.06.00.01p03", sha256="2257045b5934e7825d0efa6d5e3be39ce6600ea06118da322f204e0a9a7a504b")
+
 
     patch("cetmodules2.patch", when="@develop")
-    patch("v09_35_00.patch", when="@09.35.00")
-    patch("v09_37_01_03p02.patch", when="@09.37.01.03p02")
-    patch("v09_37_01_02p02.patch", when="@09.37.01.02p02")
-    patch("v09_37_01_02p02_larvecutils.patch", when="@09.37.01.vec02p02")
-    patch("v09_37_01_03p02_larvecutils.patch", when="@09.37.01.vec03p02")
-    patch("v09_37_02_03.patch", when="@09.37.02.03")
 
     variant(
         "cxxstd",

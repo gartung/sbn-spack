@@ -8,7 +8,6 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -27,7 +26,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Sbnobj(CMakePackage, FnalGithubPackage):
+class Sbnobj(CMakePackage):
     """The eponymous package of the Sbn experiment
     framework for particle physics experiments.
     """
@@ -36,6 +35,7 @@ class Sbnobj(CMakePackage, FnalGithubPackage):
     git_base = "https://cdcvs.fnal.gov/projects/sbnobj"
     git_base = "https://github.com/SBNSoftware/sbnobj.git"
     git = git_base
+    list_url = "https://api.github/repos/SBNSoftware/sbnobj/tags"
 
     version(
         "develop",

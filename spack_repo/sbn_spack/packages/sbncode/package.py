@@ -7,7 +7,6 @@ import os
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,35 +25,28 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Sbncode(CMakePackage, FnalGithubPackage):
+class Sbncode(CMakePackage):
     """The eponymous package of the Sbn experiment
     framework for particle physics experiments.
     """
 
-    homepage = "https://cdcvs.fnal.gov/redmine/projects/sbncode"
-    url = "https://github.com/SBNSoftware/sbncode/archive/refs/tags/v09_35_01.tar.gz"
-    git_base = "https://github.com/SBNSoftware/sbncode.git"
-    git = git_base
+    git = "https://github.com/SBNSoftware/sbncode"
+    url = f"{git}/archive/v09_37_02_03.tar.gz"
     list_url = "https://api.github.com/repos/SBNSoftware/sbncode/tags"
 
-    version("develop", branch="develop", git=git_base, get_full_repo=True)
-    version("10.10.03.01", tag="v10_10_03_01", git=git_base, get_full_repo=True)
-    version("10.06.00.01", tag="v10_06_00_01", git=git_base, get_full_repo=True)
-    version(
-        "09.37.02.03", sha256="1d287d1dd3df5c2108154660f9846ce7776a69cb4861d0f89beea69e0c60fbce"
-    )
-    version("09.37.01.03", checksum="297eaedc009e7069da0427acc0af4f27")
-    version(
-        "09.37.01.02", sha256="a7811d95c816f112f3e320fbf2a15b199a6af3c385e1f53e14ddb6c04ace54cf"
-    )
-    version("09_35_01", sha256="bf0ce987ebef47fa1e680a81a178799fffb810b6b947215bb1a545809f00c1a3")  # FIXME
+    version("develop", branch="develop", get_full_repo=True)
+    version("10.11.01", sha256="0db9326c3450f07cc12ce5ac2993cccc71aca4e5e4b6891d1e2d25994ba142fa")
     version("09.35.00", sha256="6dc753dcc24e9583a261a70da99a1275835b70091c816dbbb0ddee60ad698686")
+    version("09.37.02.03", sha256="1d287d1dd3df5c2108154660f9846ce7776a69cb4861d0f89beea69e0c60fbce")
+    version("09.37.01.03", sha256="00c638bbfdba08faea459b473c0d860cac97dd4de1528a7c4ff9c147bd39cff1")
+    version("09.37.01.02", sha256="a7811d95c816f112f3e320fbf2a15b199a6af3c385e1f53e14ddb6c04ace54cf")
 
     patch("v09_35_00.patch", when="@09.35.00")
     patch("v09_37_02_03.patch", when="@09.37.02.03")
     patch("v09_37_01_02.patch", when="@09.37.01.02")
     patch("v09_37_01_03.patch", when="@09.37.01.03")
     patch("artdaq-core-v4.0.patch", when="^artdaq-core@v4:")
+
 
     def patch(self):
         filter_file(

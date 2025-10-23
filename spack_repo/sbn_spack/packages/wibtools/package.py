@@ -8,10 +8,9 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
-class Wibtools(CMakePackage, FnalGithubPackage):
+class Wibtools(CMakePackage):
     """Tools for communicating with the WIB hardware"""
 
     homepage = "https://github.com/SBNSoftware"

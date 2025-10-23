@@ -8,10 +8,9 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
-class SbndaqArtdaqCore(CMakePackage, FnalGithubPackage):
+class SbndaqArtdaqCore(CMakePackage):
     """The toolkit currently provides SBNDAQ extensions to the artdaq-core
     functionality for data transfer, event building, event reconstruction."""
 

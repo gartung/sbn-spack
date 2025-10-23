@@ -7,7 +7,6 @@ import os
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -26,7 +25,7 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class IcarusSignalProcessing(CMakePackage, FnalGithubPackage):
+class IcarusSignalProcessing(CMakePackage):
     """SignalProcessing for icarus
     framework for particle physics experiments.
     """

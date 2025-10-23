@@ -8,7 +8,6 @@ import sys
 
 from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
-from spack_repo.fnal_art.packages.fnal_github_package.package import *
 
 
 def sanitize_environments(*args):
@@ -27,13 +26,14 @@ def sanitize_environments(*args):
             env.deprioritize_system_paths(var)
 
 
-class Icarusutil(CMakePackage, FnalGithubPackage):
+class Icarusutil(CMakePackage):
     """icarusutil"""
 
     homepage = "https://cdcvs.fnal.gov/redmine/projects/icarusutil"
     url = "https://cdcvs.fnal.gov/projects/icarusutil"
     git_base = "https://github.com/SBNSoftware/icarusutil.git"
     git = git_base
+    list_url = "https://api.github/repos/SBNSoftware/icarusutil/tags"
 
     version("08.36.00", tag="v08_36_00", git=git_base, get_full_repo=True)
     version("08.39.00", tag="v08_39_00", git=git_base, get_full_repo=True)
