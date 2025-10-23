@@ -13,7 +13,7 @@ class ArtdaqRuncontrolGui(CMakePackage):
     homepage = "https://github.com/SBNSoftware"
     url = "https://github.com/SBNSoftware/artdaq-runcontrol-gui"
     git_base = "https://github.com/SBNSoftware/artdaq-runcontrol-gui.git"
-    list_url = "https://api.github.com/repos/SBNSoftware/artdaq-runcontrol-gui/tags"
+    list_url = "https://github.com/SBNSoftware/artdaq-runcontrol-gui/tags"
     git = git_base
     version("develop", git=git_base, branch="develop", get_full_repo=True)
 

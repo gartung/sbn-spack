@@ -33,7 +33,7 @@ class Icarusutil(CMakePackage):
     url = "https://cdcvs.fnal.gov/projects/icarusutil"
     git_base = "https://github.com/SBNSoftware/icarusutil.git"
     git = git_base
-    list_url = "https://api.github.com/repos/SBNSoftware/icarusutil/tags"
+    list_url = "https://api.github.com/SBNSoftware/icarusutil/tags"
 
     version("08.36.00", tag="v08_36_00", git=git_base, get_full_repo=True)
     version("08.39.00", tag="v08_39_00", git=git_base, get_full_repo=True)

@@ -33,7 +33,7 @@ class Sbndcode(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbncode"
     git = "https://github.com/SBNSoftware/sbndcode"
     url = f"{git}/archive/v09_32_00.tar.gz"
-    list_url = "https://api.github.com/repos/SBNSoftware/sbndcode/tags"
+    list_url = "https://github.com/SBNSoftware/sbndcode/tags"
 
     version("develop", branch="develop", git=f"{git}.git", get_full_repo=True)
     version("10.11.01", sha256="2bbe19cd94fafccacaef8ed819cb4cc41cd77e527a4939648eec2d8067329898")

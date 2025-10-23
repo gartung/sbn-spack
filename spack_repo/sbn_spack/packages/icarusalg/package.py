@@ -34,7 +34,7 @@ class Icarusalg(CMakePackage):
     git_base = "https://github.com/SBNSoftware/icarusalg.git"
     git = git_base
     url = "https://github.com/SBNSoftware/icarusalg/archive/refs/tags/v10_06_00_01.tar.gz"
-    list_url = "https://api.github.com/repos/SBNSoftware/icarusalg/tags"
+    list_url = "https://github.com/SBNSoftware/icarusalg/tags"
 
     version(
         "develop",

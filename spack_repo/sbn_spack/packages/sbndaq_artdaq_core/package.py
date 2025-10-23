@@ -18,7 +18,7 @@ class SbndaqArtdaqCore(CMakePackage):
     url = "https://github.com/SBNSoftware/sbndaq-artdaq-core/archive/v1_00_00of0.tar.gz"
     git_base = "https://github.com/SBNSoftware/sbndaq-artdaq-core.git"
     git = git_base
-    list_url = "https://api.github.com/repos/SBNSoftware/sbndaq-artdaq-core/tags"
+    list_url = "https://github.com/SBNSoftware/sbndaq-artdaq-core/tags"
 
     version(
         "v1_10_03",

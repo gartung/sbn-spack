@@ -32,7 +32,7 @@ class Sbncode(CMakePackage):
 
     git = "https://github.com/SBNSoftware/sbncode"
     url = f"{git}/archive/v09_37_02_03.tar.gz"
-    list_url = "https://api.github.com/repos/SBNSoftware/sbncode/tags"
+    list_url = "https://github.com/SBNSoftware/sbncode/tags"
 
     version("develop", branch="develop", get_full_repo=True)
     version("10.11.01", sha256="0db9326c3450f07cc12ce5ac2993cccc71aca4e5e4b6891d1e2d25994ba142fa")
