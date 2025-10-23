@@ -35,7 +35,7 @@ class Sbnobj(CMakePackage):
     git_base = "https://cdcvs.fnal.gov/projects/sbnobj"
     git_base = "https://github.com/SBNSoftware/sbnobj.git"
     git = git_base
-    list_url = "https://api.github/repos/SBNSoftware/sbnobj/tags"
+    list_url = "https://api.github.com/repos/SBNSoftware/sbnobj/tags"
 
     version(
         "develop",

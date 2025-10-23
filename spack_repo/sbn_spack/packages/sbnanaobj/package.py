@@ -15,7 +15,7 @@ class Sbnanaobj(CMakePackage):
     url = "https://github.com/SBNSoftware/sbnanaobj/archive/refs/tags/v09_17_04.tar.gz"
     git_base="https://github.com/SBNSoftware/sbnanaobj.git"
     git = git_base
-    list_url = "https://api.github/repos/SBNSoftware/sbnanaobj/tags"
+    list_url = "https://api.github.com/repos/SBNSoftware/sbnanaobj/tags"
 
     version("10.00.04", tag="v10_00_04", git=git_base, get_full_repo=True)
     version(
