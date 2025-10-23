@@ -33,7 +33,7 @@ class Sbncode(CMakePackage):
     git_base = "https://github.com/SBNSoftware/sbncode"
     git = f"{git_base}.git"
     url = f"{git_base}/archive/v09_37_02_03.tar.gz"
-    list_url = g=f"{git_base}/tags"
+    list_url = f"{git_base}/tags"
 
     version("develop", branch="develop", submodules=True, get_full_repo=True)
     version("10.11.01", tag="v10_11_01", commit="d90a687042fd24e178f9f802ea27f6fd92cedaa2", submodules=True)
