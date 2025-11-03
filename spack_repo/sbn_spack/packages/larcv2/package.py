@@ -20,10 +20,10 @@
 # See the Spack documentation for more information on packaging.
 # ----------------------------------------------------------------------------
 
-from spack import *
 import os
 from time import sleep
 from spack_repo.builtin.build_systems.makefile import MakefilePackage
+from spack.package import *
 
 class Larcv2(MakefilePackage):
     """Framework for data processing with APIs to interface deep neural network"""
