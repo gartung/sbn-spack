@@ -153,7 +153,7 @@ class Icaruscode(CMakePackage):
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dicaruscode_FW_DIR=fw",
-            "-Dicaruscode_WP_DIR={0}".format(self.spec["wirecell"].prefix),
+            "-Dicaruscode_WP_DIR={0}".format(self.spec["wire-cell-toolkit"].prefix),
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
             "-DTRACE_INC={0}".format(self.spec["trace"].prefix.include),
             "-DLIBWDA_INC={0}".format(self.spec["libwda"].prefix.include),
