@@ -110,6 +110,7 @@ class Sbndcode(CMakePackage):
     depends_on("trace", type=("build", "run"))
     depends_on("dk2nudata", type=("build", "run"))
     depends_on("sbncode", type=("build", "run"))
+    depends_on("larcv2")
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
