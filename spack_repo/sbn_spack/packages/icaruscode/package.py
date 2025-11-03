@@ -111,6 +111,7 @@ class Icaruscode(CMakePackage):
     depends_on("larreco", type=("build", "run"))
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec02p02")
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec03p02")
+    depends_on("larvecutils", type=("build", "run"), when="@10:")
     depends_on("larsim", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
@@ -128,6 +129,7 @@ class Icaruscode(CMakePackage):
     depends_on("trace", type=("build", "run"))
     depends_on("protobuf", type=("build", "run"))
     depends_on("py-torch", type=("build", "run"))
+    depends_on("larcv2", type=("build", "run"), when="@10:")
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
