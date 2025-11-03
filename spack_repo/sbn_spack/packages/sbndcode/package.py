@@ -79,6 +79,8 @@ class Sbndcode(CMakePackage):
     depends_on("fftw", type=("build", "run"))
     depends_on("hep-concurrency", type=("build", "run"))
     depends_on("messagefacility", type=("build", "run"))
+    depends_on("nlohmann-json", type=("build", "run"))
+    depends_on("vdt", type=("build", "run"))
     depends_on("catch2", type=("build", "run"))
     depends_on("ifdh-art", type=("build", "run"))
     depends_on("tbb", type=("build", "run"))
