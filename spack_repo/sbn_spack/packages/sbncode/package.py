@@ -87,6 +87,7 @@ class Sbncode(CMakePackage):
     depends_on("genie")
     depends_on("gsl")
     depends_on("hep-concurrency")
+    depends_on("messagefacility")
     depends_on("ifbeam")
     depends_on("ifdh-art")
     depends_on("ifdhc")

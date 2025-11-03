@@ -113,6 +113,7 @@ class Icaruscode(CMakePackage):
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec03p02")
     depends_on("larvecutils", type=("build", "run"), when="@10:")
     depends_on("larsim", type=("build", "run"))
+    depends_on("larexamples", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
     depends_on("nug4", type=("build", "run"))

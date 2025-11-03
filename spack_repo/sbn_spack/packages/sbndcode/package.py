@@ -78,6 +78,7 @@ class Sbndcode(CMakePackage):
     depends_on("eigen", type=("build", "run"))
     depends_on("fftw", type=("build", "run"))
     depends_on("hep-concurrency", type=("build", "run"))
+    depends_on("messagefacility", type=("build", "run"))
     depends_on("ifdh-art", type=("build", "run"))
     depends_on("tbb", type=("build", "run"))
     depends_on("geant4", type=("build", "run"))
