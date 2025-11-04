@@ -149,7 +149,7 @@ class Icaruscode(CMakePackage):
     depends_on("py-torch", type=("build", "run"))
     depends_on("spdlog", type=("build", "run"))
     depends_on("fmt", type=("build", "run"))
-    depends_on("py-tensowflow", type=("build", "run"))
+    depends_on("py-tensorflow", type=("build", "run"))
     depends_on("larcv2", type=("build", "run"), when="@10:")
 
     if "SPACKDEV_GENERATOR" in os.environ:
