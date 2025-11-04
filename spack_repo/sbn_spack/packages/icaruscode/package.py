@@ -59,6 +59,7 @@ class Icaruscode(CMakePackage):
     version("09.35.00", sha256="9c265335bbfc728a5a9d47cc615475eb9e57d8871224ac0aee44ac763e166b54")
 
     patch("cetmodules2.patch", when="@develop")
+    patch("v10_06_00_06p01.patch", when="@10.06.00.06p01")
 
     variant(
         "cxxstd",
@@ -181,6 +182,7 @@ class Icaruscode(CMakePackage):
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dicaruscode_FW_DIR=fw",
             "-Dicaruscode_WP_DIR=wire-cell-cfg",
+            "-Dicaruscode_WIRECELL_PATH={0}".format(self.spec["wire-cell-toolkit"].prefix),
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
             "-DTRACE_INC={0}".format(self.spec["trace"].prefix.include),
             "-DLIBWDA_INC={0}".format(self.spec["libwda"].prefix.include),
