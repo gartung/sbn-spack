@@ -49,6 +49,7 @@ class Sbndcode(CMakePackage):
     version("09.32.00", sha256="def738f4df92fc75d818041af15ce48fea9842dad96ea96d2285793b1f161bbf")
 
     patch("v09_32_00.patch", when="@9.32.00")
+    patch("v10_11_01.patch", when="@10.11.01")
 
     variant(
         "cxxstd",
@@ -159,6 +160,8 @@ class Sbndcode(CMakePackage):
                 self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
                 )
         args = [
+            "-Dsbndcode_FW_DIR=fw",
+            "-Dsbndcode_WP_DIR=wire-cell-cfg",
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
             "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),

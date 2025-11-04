@@ -1,0 +1,15 @@
+--- sbndcode-10_11_01/CMakeLists.txt	2025-10-20 11:27:07.000000000 -0500
++++ spack-src/CMakeLists.txt	2025-11-04 16:30:20.315865516 -0600
+@@ -15,10 +15,10 @@
+ 
+ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+ 
+-set(${PROJECT_NAME}_CMAKE_PROJECT_VERSION_STRING 10.11.01)
+ find_package(cetmodules REQUIRED)
+ project(sbndcode LANGUAGES CXX)
+-
++set(${PROJECT_NAME}_CMAKE_PROJECT_VERSION_STRING 10.11.01)
++set(${PROJECT_NAME}_EXTENDED_VERSION_SEMANTICS True)
+ # for CI:
+ # project(sbndcode VERSION 10.05.00)
+ 
