@@ -85,6 +85,9 @@ class Icaruscode(CMakePackage):
     depends_on("canvas", type=("build", "run"))
     depends_on("cetlib", type=("build", "run"))
     depends_on("cetlib-except", type=("build", "run"))
+    depends_on("messagefacility", type=("build", "run"))
+    depends_on("catch2", type=("build", "run"))
+    depends_on("gallery", type=("build", "run"))
     depends_on("clhep", type=("build", "run"))
     depends_on("cppgsl", type=("build", "run"))
     depends_on("eigen", type=("build", "run"))
@@ -101,11 +104,14 @@ class Icaruscode(CMakePackage):
     depends_on("larsoft", type=("build", "run"))
     depends_on("larana", type=("build", "run"))
     depends_on("larcoreobj", type=("build", "run"))
+    depends_on("larcorealg", type=("build", "run"))
     depends_on("larcore", type=("build", "run"))
     depends_on("lardataobj", type=("build", "run"))
+    depends_on("lardataalg", type=("build", "run"))
     depends_on("lardata", type=("build", "run"))
     depends_on("larevt", type=("build", "run"))
     depends_on("pandorasdk", type=("build", "run"))
+    depends_on("pandoramonitoring", type=("build", "run"))
     depends_on("larpandora", type=("build", "run"))
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
@@ -114,15 +120,24 @@ class Icaruscode(CMakePackage):
     depends_on("larvecutils", type=("build", "run"), when="@10:")
     depends_on("larsim", type=("build", "run"))
     depends_on("larexamples", type=("build", "run"))
+    depends_on("larwirecell", type=("build", "run"))
+    depends_on("wire-cell-toolkit", type=("build", "run"))
     depends_on("nlohmann-json", type=("build", "run"))
     depends_on("vdt", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
+    depends_on("dk2nudata", type=("build", "run"))
+    depends_on("dk2nugenie", type=("build", "run"))
+    depends_on("genie", type=("build", "run"))
+    depends_on("cry", type=("build", "run"))
+    depends_on("rstartree", type=("build", "run"))
+    depends_on("artg4tk", type=("build", "run"))
     depends_on("nug4", type=("build", "run"))
     depends_on("nucondb", type=("build", "run"))
     depends_on("nutools", type=("build", "run"))
     depends_on("nurandom", type=("build", "run"))
     depends_on("nusimdata", type=("build", "run"))
+    depends_on("nufinder", type=("build", "run"))
     depends_on("postgresql", type=("build", "run"))
     depends_on("range-v3", type=("build", "run"))
     depends_on("sbndaq-artdaq-core", type=("build", "run"))
@@ -132,6 +147,9 @@ class Icaruscode(CMakePackage):
     depends_on("trace", type=("build", "run"))
     depends_on("protobuf", type=("build", "run"))
     depends_on("py-torch", type=("build", "run"))
+    depends_on("spdlog", type=("build", "run"))
+    depends_on("fmt", type=("build", "run"))
+    depends_on("py-tensowflow", type=("build", "run"))
     depends_on("larcv2", type=("build", "run"), when="@10:")
 
     if "SPACKDEV_GENERATOR" in os.environ:
@@ -153,10 +171,16 @@ class Icaruscode(CMakePackage):
 
     def cmake_args(self):
         # Set CMake args.
+        tdir = "{0}/lib/python{1}/site-packages/tensorflow".format(
+                self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
+                )
         args = [
+            "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
+            "-DTensorFlow_cc_LIBRARY:FILEPATH={0}/libtensorflow_cc.so.2".format(tdir),
+            "-DTensorFlow_framework_LIBRARY:FILEPATH={0}/libtensorflow_framework.so.2".format(tdir),
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dicaruscode_FW_DIR=fw",
-            "-Dicaruscode_WP_DIR={0}".format(self.spec["wire-cell-toolkit"].prefix),
+            "-Dicaruscode_WP_DIR=wire-cell-cfg",
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
             "-DTRACE_INC={0}".format(self.spec["trace"].prefix.include),
             "-DLIBWDA_INC={0}".format(self.spec["libwda"].prefix.include),
@@ -164,8 +188,9 @@ class Icaruscode(CMakePackage):
         return args
 
     def setup_build_environment(self, spack_env):
-        spack_env.set("CETBUILDTOOLS_VERSION", self.spec["cetmodules"].version)
+        spack_env.set("CETBUILDTOOLS_VERSION", self.spec["cetmodules"].version.string)
         spack_env.set("CETBUILDTOOLS_DIR", self.spec["cetmodules"].prefix)
+        spack_env.append_path("CMAKE_PREFIX_PATH", self.spec["cetmodules"].prefix)
         spack_env.prepend_path("LD_LIBRARY_PATH", self.spec["root"].prefix.lib)
         # Binaries.
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))

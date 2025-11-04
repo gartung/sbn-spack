@@ -89,32 +89,50 @@ class Sbndcode(CMakePackage):
     depends_on("xerces-c", type=("build", "run"))
     depends_on("larana", type=("build", "run"))
     depends_on("larcoreobj", type=("build", "run"))
+    depends_on("larcorealg", type=("build", "run"))
     depends_on("larcore", type=("build", "run"))
     depends_on("lardataobj", type=("build", "run"))
+    depends_on("lardataalg", type=("build", "run"))
     depends_on("lardata", type=("build", "run"))
     depends_on("larevt", type=("build", "run"))
     depends_on("pandorasdk", type=("build", "run"))
+    depends_on("pandoramonitoring", type=("build", "run"))
     depends_on("larpandora", type=("build", "run"))
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("py-torch", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
+    depends_on("larrecodnn", type=("build", "run"))
     depends_on("larsim", type=("build", "run"))
+    depends_on("larvecutils", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
     depends_on("marley", type=("build", "run"))
     depends_on("nug4", type=("build", "run"))
+    depends_on("artg4tk", type=("build", "run"))
+    depends_on("nugen", type=("build", "run"))
+    depends_on("nuevdb", type=("build", "run"))
     depends_on("genie", type=("build", "run"))
     depends_on("ifdhc", type=("build", "run"))
     depends_on("libxml2", type=("build", "run"))
-    # depends_on('nurandom', type=('build','run'))  ???
+    depends_on('nurandom', type=('build','run')) 
+    depends_on('nusimdata', type=('build','run')) 
     depends_on("nutools", type=("build", "run"))
+    depends_on("nufinder", type=("build", "run"))
     depends_on("postgresql", type=("build", "run"))
     depends_on("range-v3", type=("build", "run"))
     depends_on("sbndaq-artdaq-core", type=("build", "run"))
     depends_on("sqlite", type=("build", "run"))
     depends_on("trace", type=("build", "run"))
     depends_on("dk2nudata", type=("build", "run"))
+    depends_on("dk2nugenie", type=("build", "run"))
+    depends_on("cry", type=("build", "run"))
+    depends_on("sbnanaobj", type=("build", "run"))
     depends_on("sbncode", type=("build", "run"))
-    depends_on("larcv2")
+    depends_on("larcv2", type=("build", "run"))
+    depends_on("rstartree", type=("build", "run"))
+    depends_on("protobuf", type=("build", "run"))
+    depends_on("larfinder", type=("build", "run"))
+    depends_on("triton", type=("build", "run"))
+    depends_on("py-tensorflow", type=("build", "run"))
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -135,8 +153,15 @@ class Sbndcode(CMakePackage):
 
     def cmake_args(self):
         # Set CMake args.
+        tdir = "{0}/lib/python{1}/site-packages/tensorflow".format(
+                self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
+                )
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
+            "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
+            "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
+            "-DTensorFlow_cc_LIBRARY:FILEPATH={0}/libtensorflow_cc.so.2".format(tdir),
+            "-DTensorFlow_framework_LIBRARY:FILEPATH={0}/libtensorflow_framework.so.2".format(tdir),
         ]
         return args
 
