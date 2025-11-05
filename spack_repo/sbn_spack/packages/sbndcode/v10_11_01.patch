@@ -38,3 +38,11 @@
  set(
     MODULE_LIBRARIES
          larcorealg::Geometry
+--- sbndcode-10_11_01/test/ci/CMakeLists.txt	2025-10-20 11:27:07.000000000 -0500
++++ spack-src/test/ci/CMakeLists.txt	2025-11-05 14:35:58.688806712 -0600
+@@ -51,4 +51,4 @@
+ 
+ install_fhicl()
+ 
+-install(FILES fcl_file_checks.list DESTINATION "${sbndcode_UPS_PRODUCT_NAME}/${sbndcode_UPS_PRODUCT_VERSION}/test")
++install(FILES fcl_file_checks.list DESTINATION "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/${PROJECT_VERSION}/test")
