@@ -51,6 +51,21 @@ class Sbndcode(CMakePackage):
     patch("v09_32_00.patch", when="@9.32.00")
     patch("v10_11_01.patch", when="@10.11.01")
 
+
+    def patch(self): 
+        filter_file('#include "tensorflow/cc/saved_model/tag_constants.h"',
+                    '#include "tensorflow/cc/saved_model/bundle_v2.h"\n#include "tensorflow/cc/saved_model/constants.h"\n#include "tensorflow/cc/saved_model/loader.h"',
+                    "sbndcode/SBNDCVN/tf/tf_graph.cc",
+                    )
+        filter_file("{tensorflow::kSavedModelTagServe},",
+                    "{},",
+                    "sbndcode/SBNDCVN/tf/tf_graph.cc",
+                    )
+        filter_file("add_subdirectory\(Commissioning\)",
+                    "#if(DEFINED ENV{HEP_HPC_DIR} )\nadd_subdirectory(Commissioning)\n#endif()"
+                    "sbndcode/CMakeLists.txt"
+                    )
+
     variant(
         "cxxstd",
         default="17",
@@ -136,6 +151,8 @@ class Sbndcode(CMakePackage):
     depends_on("py-tensorflow", type=("build", "run"))
     depends_on("torch-scatter", type=("build", "run"))
     depends_on("hep-hpc", type=("build", "run"))
+    depends_on("hdf5", type=("build", "run"))
+    depends_on("openmpi", type=("build", "run"))
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
@@ -171,6 +188,7 @@ class Sbndcode(CMakePackage):
         return args
 
     def setup_build_environment(self, spack_env):
+        spack_env.set("GENIE_INC", "{0}".format(self.spec["genie"].prefix.include)
         # Binaries.
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
         # Ensure we can find plugin libraries.
