@@ -188,7 +188,7 @@ class Sbndcode(CMakePackage):
         return args
 
     def setup_build_environment(self, spack_env):
-        spack_env.set("GENIE_INC", "{0}".format(self.spec["genie"].prefix.include)
+        spack_env.set("GENIE_INC", "{0}".format(self.spec["genie"].prefix.include))
         # Binaries.
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
         # Ensure we can find plugin libraries.
