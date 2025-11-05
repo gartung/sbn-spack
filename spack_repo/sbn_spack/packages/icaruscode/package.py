@@ -207,6 +207,12 @@ class Icaruscode(CMakePackage):
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         # FW search path
         spack_env.append_path("FW_SEARCH_PATH", os.path.join(self.build_directory, "fw"))
+        #wirecell vars
+        spack_env.set("WIRECELL_INC", str(self.spec["wire-cell-toolkit"].prefix.include))
+        spack_env.set("LARWIRECELL_INC", str(self.spec["larwirecell"].prefix.include))
+        spack_env.set("SPDLOG_INC", str(self.spec["spdlog"].prefix.include))
+        spack_env.set("JSONCPP_INC", str(self.spec["jsoncpp"].prefix.include))
+
         # Cleaup.
         sanitize_environments(spack_env)
 
