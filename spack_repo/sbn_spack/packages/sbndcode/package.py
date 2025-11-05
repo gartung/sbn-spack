@@ -62,7 +62,7 @@ class Sbndcode(CMakePackage):
                     "sbndcode/SBNDCVN/tf/tf_graph.cc",
                     )
         filter_file("add_subdirectory\(Commissioning\)",
-                    "#if(DEFINED ENV{HEP_HPC_DIR} )\nadd_subdirectory(Commissioning)\n#endif()"
+                    "#add_subdirectory(Commissioning)"
                     "sbndcode/CMakeLists.txt"
                     )
 
