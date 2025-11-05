@@ -61,6 +61,10 @@ class Icaruscode(CMakePackage):
     patch("cetmodules2.patch", when="@develop")
     patch("v10_06_00_06p01.patch", when="@10.06.00.06p01")
 
+
+    def patch(self):
+        filter_file("WireCellRoot", "spdlog::spdlog", "icaruscode/Overlays/CMakeLists.txt")
+
     variant(
         "cxxstd",
         default="17",
@@ -209,6 +213,7 @@ class Icaruscode(CMakePackage):
         spack_env.append_path("FW_SEARCH_PATH", os.path.join(self.build_directory, "fw"))
         #wirecell vars
         spack_env.set("WIRECELL_INC", str(self.spec["wire-cell-toolkit"].prefix.include))
+        spack_env.set("WIRECELL_LIB", str(self.spec["wire-cell-toolkit"].prefix.lib))
         spack_env.set("LARWIRECELL_INC", str(self.spec["larwirecell"].prefix.include))
         spack_env.set("SPDLOG_INC", str(self.spec["spdlog"].prefix.include))
         spack_env.set("JSONCPP_INC", str(self.spec["jsoncpp"].prefix.include))
