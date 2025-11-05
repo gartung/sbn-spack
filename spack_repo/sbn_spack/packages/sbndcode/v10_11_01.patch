@@ -1,5 +1,5 @@
 --- sbndcode-10_11_01/CMakeLists.txt	2025-10-20 11:27:07.000000000 -0500
-+++ spack-src/CMakeLists.txt	2025-11-04 16:30:20.315865516 -0600
++++ spack-src/CMakeLists.txt	2025-11-05 14:03:29.947622406 -0600
 @@ -15,10 +15,10 @@
  
  cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
@@ -13,3 +13,28 @@
  # for CI:
  # project(sbndcode VERSION 10.05.00)
  
+@@ -89,10 +89,10 @@
+ find_package( Boost COMPONENTS system REQUIRED )
+ find_package( ROOT REQUIRED )
+ 
+-if(DEFINED ENV{HEP_HPC_DIR} )
+-  find_ups_product( hdf5 )
+-  find_ups_product( hep_hpc )
+-endif()
++#if(DEFINED ENV{HEP_HPC_DIR} )
++find_package( HDF5 REQUIRED)
++find_package( hep_hpc REQUIRED)
++  #endif()
+ 
+ # macros for dictionary and simple_plugin
+ include(ArtDictionary)
+--- sbndcode-10_11_01/sbndcode/Commissioning/CMakeLists.txt	2025-10-20 11:27:07.000000000 -0500
++++ spack-src/sbndcode/Commissioning/CMakeLists.txt	2025-11-05 14:06:05.594886184 -0600
+@@ -1,5 +1,6 @@
+ add_subdirectory(fcls)
+-
++include_directories(${HEP_HPC_INCLUDE_DIRS})
++include_directories($ENV{OPENMPI_INCLUDE_DIR})
+ set(
+    MODULE_LIBRARIES
+         larcorealg::Geometry

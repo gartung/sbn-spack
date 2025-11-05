@@ -61,10 +61,6 @@ class Sbndcode(CMakePackage):
                     "{},",
                     "sbndcode/SBNDCVN/tf/tf_graph.cc",
                     )
-        filter_file("add_subdirectory\(Commissioning\)",
-                    "#add_subdirectory(Commissioning)"
-                    "sbndcode/CMakeLists.txt"
-                    )
 
     variant(
         "cxxstd",
@@ -189,6 +185,7 @@ class Sbndcode(CMakePackage):
 
     def setup_build_environment(self, spack_env):
         spack_env.set("GENIE_INC", "{0}".format(self.spec["genie"].prefix.include))
+        spack_env.set("OPENMPI_INCLUDE_DIR", "{0}".format(self.spec["openmpi"].prefix.include))
         # Binaries.
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
         # Ensure we can find plugin libraries.
