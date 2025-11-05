@@ -69,7 +69,7 @@ class IcarusSignalProcessing(CMakePackage):
     def patch(self):
         filter_file("isnan\(val\)",
                 "std::isnan(val)",
-                "icarus_signal_processing/icarus_signal_processing/WaveformTools.h"
+                "icarus_signal_processing/WaveformTools.h"
                 )
 
     if "SPACKDEV_GENERATOR" in os.environ:
