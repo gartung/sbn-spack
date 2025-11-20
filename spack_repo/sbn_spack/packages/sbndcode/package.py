@@ -143,7 +143,7 @@ class Sbndcode(CMakePackage):
     depends_on("rstartree", type=("build", "run"))
     depends_on("protobuf", type=("build", "run"))
     depends_on("larfinder", type=("build", "run"))
-    depends_on("triton", type=("build", "run"))
+    depends_on("py-triton", type=("build", "run"))
     depends_on("py-tensorflow", type=("build", "run"))
     depends_on("torch-scatter", type=("build", "run"))
     depends_on("hep-hpc", type=("build", "run"))
