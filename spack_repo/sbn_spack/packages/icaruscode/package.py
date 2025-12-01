@@ -127,6 +127,7 @@ class Icaruscode(CMakePackage):
     depends_on("larexamples", type=("build", "run"))
     depends_on("larwirecell", type=("build", "run"))
     depends_on("wire-cell-toolkit", type=("build", "run"))
+    depends_on("jsoncpp", type=("build", "run"))
     depends_on("nlohmann-json", type=("build", "run"))
     depends_on("vdt", type=("build", "run"))
     depends_on("libwda", type=("build", "run"))
