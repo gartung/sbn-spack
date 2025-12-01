@@ -11,3 +11,25 @@
  
  message(STATUS
    "\n-- ============================================================================="
+--- icaruscode-10_06_00_06p01/icaruscode/Overlays/CMakeLists.txt        2025-10-10 17:33:45.000000000 -0500
++++ spack-src/icaruscode/Overlays/CMakeLists.txt        2025-12-01 13:37:31.469405652 -0600
+@@ -1,7 +1,7 @@
+ find_package(gallery         REQUIRED)
+ 
+ find_package(larwirecell REQUIRED )
+-find_package(jsoncpp REQUIRED)
++find_package(jsoncpp REQUIRED COMPONENTS shared)
+ find_package(spdlog REQUIRED)
+ 
+ include_directories( $ENV{JSONCPP_INC} )
+@@ -42,8 +42,8 @@
+        WireCellAux
+        WireCellIface
+        WireCellPgraph
+-       WireCellRoot
+-       jsoncpp
++       spdlog::spdlog
++       jsoncpp_lib
+        dl
+ )
+
