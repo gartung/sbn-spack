@@ -62,6 +62,10 @@ class Icaruscode(CMakePackage):
     patch("v10_06_00_06p01.patch", when="@10.06.00.06p01")
 
 
+    def patch(self):
+        filter_file("WireCellRoot", "spdlog::spdlog", "icaruscode/Overlays/CMakeLists.txt")
+        filter_file(" jsoncpp", " JsonCpp::JsonCpp", "icaruscode/Overlays/CMakeLists.txt")
+
     variant(
         "cxxstd",
         default="17",
