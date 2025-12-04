@@ -61,6 +61,10 @@ class Sbndcode(CMakePackage):
                     "{},",
                     "sbndcode/SBNDCVN/tf/tf_graph.cc",
                     )
+        filter_file("find_package\( art REQUIRED \)",
+                    "find_package(protobuf REQUIRED)\nfind_package(art REQUIRED)",
+                    "CMakeLists.txt",
+                    )
 
     variant(
         "cxxstd",
