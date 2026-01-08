@@ -81,6 +81,7 @@ class Icaruscode(CMakePackage):
     depends_on("cxx", type="build")
 
     # Build and link dependencies.
+    depends_on("root+spectrum", type=("build", "run"))
     depends_on("icarusalg", type=("build", "run"))
     depends_on("icarus-data", type=("build", "run"))
     depends_on("artdaq-core", type=("build", "run"))
