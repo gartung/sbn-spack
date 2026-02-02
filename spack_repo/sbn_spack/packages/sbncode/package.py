@@ -33,8 +33,8 @@ class Sbncode(CMakePackage):
     url = "https://github.com/SBNSoftware/sbncode/archive/refs/tags/v09_35_01.tar.gz"
     git = "https://github.com/SBNSoftware/sbncode.git"
 
-    version("v10_12_02_dev",commit="813ca27339a3aac3fcf15ef78332c1e7978fa389", submodules=True)
     version("v10_12_02",commit="813ca27339a3aac3fcf15ef78332c1e7978fa389", submodules=True)
+    version("v10_11_01",commit="30569b2615f93ab698d68a84beb21e5bc031cd5c", submodules=True)
     version("v10_06_00_01", commit="fb929f3d9ac910bec5da48ca8adcc1bad0412eb6", submodules=True)
     version("v10_04_07", commit="412514c73b41c88fcbd9ffcf0632ed186703a2d3", submodules=True)
     version("v10_04_06_p01",commit="41ef8493069b0f07287e43ed66873484c0a203d5", submodules=True)
@@ -111,15 +111,6 @@ class Sbncode(CMakePackage):
             "-DCMAKE_VERBOSE_MAKEFILE=1",
             "-DCMAKE_RULE_MESSAGES=1",
             "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
-            #self.define(
-            #    "CMAKE_PREFIX_PATH",
-            #    join_path(
-            #    self.spec["py-tensorflow"].prefix.lib,
-            #    "python{0}/site-packages/tensorflow".format(
-            #        self.spec["python"].version.up_to(2)
-            #    ),
-            #  )
-            #),
             self.define(
                 "TensorFlow_LIBRARIES",
                 join_path(
@@ -163,8 +154,6 @@ class Sbncode(CMakePackage):
         run_env.prepend_path("FHICL_INCLUDE_PATH", self.prefix.fcl)
         run_env.prepend_path("ROOT_INCLUDE_PATH", self.spec['artdaq-core'].prefix.include)
         run_env.prepend_path("ROOT_LIBRARY_PATH", self.spec['artdaq-core'].prefix.lib)
-        # Cleaup.
-        #sanitize_environments(run_env)
 
     def setup_dependent_build_environment(self, spack_env, dependent_spec):
         spack_env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["py-tensorflow"].prefix.lib, "python{0}/site-packages/tensorflow".format(self.spec["python"].version.up_to(2))))
@@ -177,6 +166,3 @@ class Sbncode(CMakePackage):
         spack_env.prepend_path("ROOT_LIBRARY_PATH", self.spec["root"].prefix.lib.root)
         # Perl modules.
         spack_env.prepend_path("PERL5LIB", os.path.join(self.prefix, "perllib"))
-        # Larcv modules
-        # Cleanup.
-        #sanitize_environments(spack_env)

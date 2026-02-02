@@ -16,7 +16,7 @@ class Sbndcode(CMakePackage):
 
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
 
-    version("10.12.02_dev", sha256="9360544a3b9ad2dd7500d1479b1a76b52a2153169a9222eccc17153477894c9a")
+    version("10.11.01.01", sha256="dae33d76ae429e1ad5f4775c0e6a0059fb44d7190471db378d7748285f4533d5")
     version("10.12.02", sha256="9360544a3b9ad2dd7500d1479b1a76b52a2153169a9222eccc17153477894c9a")
     version("10.06.00.01", sha256="5ad9dfb9e96adf82a9f0a6fcbcb8042664b1349fe4f44374462f17fce2d95b51")
     version("10.04.07", tag="v10_04_07", git=git_base, get_full_repo=True)
@@ -81,71 +81,12 @@ class Sbndcode(CMakePackage):
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
             "-Dsbndcode_WP_DIR={0}".format(self.spec["wire-cell-toolkit"].prefix),
-            ##"-DCMAKE_PREFIX_PATH={0}".format(
-            ##    self.spec["sbnanaobj"].prefix),
-            ##"-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
-            ##    self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
-            ##),
-            #"-DTensorFlow_INCLUDE_DIR={0}/lib/python{1}/site-packages/tensorflow/include".format(
-            #        self.spec["py-tensorflow"].prefix, "3.10"),
-            #"-DTensorFlow_LIBRARIES={0}/lib/python{1}/site-packages/tensorflow".format(
-            #        self.spec["py-tensorflow"].prefix, "3.10"),
-            #"-DTensorFlow_cc_LIBRARY={0}/lib/python{1}/site-packages/tensorflow/libtensorflow_framework.so".format(
-            #        self.spec["py-tensorflow"].prefix, "3.10"),
-            #"-DTensorFlow_framework_LIBRARY={0}/lib/python{1}/site-packages/tensorflow/libtensorflow_cc.so".format(
-            #        self.spec["py-tensorflow"].prefix, "3.10"),
-            #"-DSQLite3_INCLUDE_DIR={0}".format(self.spec['sqlite'].prefix.include),
-            #"-DSQLite3_LIBRARY={0}".format(self.spec['sqlite'].prefix.lib),
-            #"-DProtobuf_LIBRARY={0}".format(self.spec['protobuf'].prefix.lib64+"/libprotobuf.so"),
-            #"-DFFTW3_PREFIX={0}".format(self.spec['fftw'].prefix),
             "--debug-find"
             ]
         return args
 
     def setup_build_environment(self, spack_env):
         spack_env.prepend_path("HEP_HPC_INC", self.spec['hep-hpc'].prefix.include)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['catch2'].prefix.lib64.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['triton'].prefix.lib64.cmake.TritonCommon)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['triton'].prefix.lib64.cmake.TritonClient)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['geant4'].prefix.lib64+"/Geant4-10.6.1")
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['canvas'].prefix)
-        # spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['canvas'].prefix.lib.canvas.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larevt'].prefix.lib.larevt.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larana'].prefix.lib.larana.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larpandora'].prefix.lib.larpandora.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['pandorasdk'].prefix)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larpandoracontent'].prefix.lib.larpandoracontent.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nurandom'].prefix.lib.nurandom.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nutools'].prefix.lib.nutools.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['torch-scatter'].prefix.share.cmake.TorchScatter)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nug4'].prefix.lib.nug4.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['lardataobj'].prefix.lib.lardataobj.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larcoreobj'].prefix.lib.larcoreobj.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larcore'].prefix.lib.larcore.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larsim'].prefix.lib.larsim.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['artg4tk'].prefix.lib.artg4tk.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['lardata'].prefix.lib.lardata.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larcorealg'].prefix.lib.larcorealg.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larrecodnn'].prefix.lib.larrecodnn.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larfinder'].prefix.lib.larfinder.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larreco'].prefix.lib.larreco.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nusimdata'].prefix.lib.nusimdata.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nugen'].prefix.lib.nugen.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['artdaq-core'].prefix.lib.artdaq_core.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['sbndaq-artdaq-core'].prefix.lib.sbndaq_artdaq_core.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['larvecutils'].prefix.lib.larvecutils.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['sbnanaobj'].prefix.lib.sbnanaobj.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nlohmann-json'].prefix.share.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['nufinder'].prefix.lib.nufinder.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['range-v3'].prefix.lib64.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['cetlib'].prefix.lib.cetlib.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['cetlib-except'].prefix.lib.cetlib_except.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['fhicl-cpp'].prefix.lib.fhiclcpp.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['hep-concurrency'].prefix.lib.hep_concurrency.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['hep-hpc'].prefix.lib.hep_hpc.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['canvas-root-io'].prefix.lib.canvas_root_io.cmake)
-        #spack_env.prepend_path("CMAKE_PREFIX_PATH", self.spec['art-root-io'].prefix.lib.art_root_io.cmake)
-
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
         spack_env.set("SBNDCODE_DIR", str(self.build_directory))
         spack_env.prepend_path("CET_PLUGIN_PATH", os.path.join(self.build_directory, "lib"))
@@ -168,9 +109,7 @@ class Sbndcode(CMakePackage):
         run_env.prepend_path("FHICL_INCLUDE_PATH", self.prefix.fcl)
         run_env.prepend_path("WIRECELL_PATH", os.path.join(self.spec['wire-cell-toolkit'].prefix))
 
-
     def setup_dependent_build_environment(self, spack_env, dependent_spec):
-        # Binaries.
         spack_env.prepend_path("PATH", self.prefix.bin)
         spack_env.prepend_path("CET_PLUGIN_PATH", self.prefix.lib)
         spack_env.prepend_path("ROOT_INCLUDE_PATH", self.prefix.include)

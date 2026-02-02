@@ -26,15 +26,12 @@ import glob
 class SbndData(Package):
     """FIXME: Put a proper description of your package here."""
 
-    # FIXME: Add a proper url for your package's homepage here.
-    # homepage = "https://scisoft.fnal.gov/scisoft/packages/sbnd_data/v01_24_00"
     url_base = "https://scisoft.fnal.gov/scisoft/packages/sbnd_data/"
-    # url = "https://scisoft.fnal.gov/scisoft/packages/sbnd_data/v01_24_00/sbnd_data-01.24.00-noarch.tar.bz2"
 
     version("01_36_00", sha256="47d2314a4786b08c55a11f06a27a4d894c606aa94d473294b1d1bcba2d1c6e68", url=url_base+"v01_36_00/sbnd_data-01.36.00-noarch.tar.bz2") 
     version("01_31_00", sha256="90cd9a83b935988821020ee925cbefc8f3f40ea2d9340ce4eaaae465bf398088", url=url_base+"v01_31_00/sbnd_data-01.31.00-noarch.tar.bz2")
-    version("01_29_00", sha256="23930cea80f89e8bd38eadf9d4e0d5b55dc68d75e357286ea2e7408d8a17441b")
-    version("01_28_00", sha256="d50716c03feff2dde14d372884cae93f006da5761ed7e3ef501f62c59b6ad1d6")
+    version("01_29_00", sha256="23930cea80f89e8bd38eadf9d4e0d5b55dc68d75e357286ea2e7408d8a17441b", url=url_base+"v01_29_00/sbnd_data-01.29.00-noarch.tar.bz2")
+    version("01_28_00", sha256="d50716c03feff2dde14d372884cae93f006da5761ed7e3ef501f62c59b6ad1d6", url=url_base+"v01_28_00/sbnd_data-01.28.00-noarch.tar.bz2")
     version("01_26_00", sha256="984dcde0bde1430558a9e2dd4ee8ca5ee63122a4a7aa391051f763510f58cf80", url=url_base+"v01_26_00/sbnd_data-01.26.00-noarch.tar.bz2")
     version("01_25_00", sha256="84bc68f77366c38beb1695e0c635d7ec2c8b1ff02548c03b9f79a5b9b188c4b0", url=url_base+"v01_25_00/sbnd_data-01.25.00-noarch.tar.bz2")
     version("01_24_00", sha256="36659fd880d34f7a987fc395b20abdcbc9a39a8b318ba8e47312a0d3e7893ddb", url=url_base+"v01_24_00/sbnd_data-01.24.00-noarch.tar.bz2")
@@ -46,24 +43,6 @@ class SbndData(Package):
     def setup_run_environment(self, env):
         env.set("SBND_DATA_VERSION", "v%s" % self.version.underscored)
         env.set("SBND_DATA_DIR", "%s" % self.prefix)
-        #env.prepend_path("WIRECELL_PATH", "%s/WireCell" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/CalibrationDatabase" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/CNNHitClassification" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/CRUMBS" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/FlashMatch" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/GENIE" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/OpDetReco" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/OpDetSim" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/OpticalLibrary" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/PandoraMVAs" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/ParticleGunHists" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/PhysicsBook" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/PID" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/Response" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/SCEoffsets" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/ShowerEnergyReco" % self.prefix)
-        #env.prepend_path("FW_SEARCH_PATH", "%s/sbnd-data/WireCell" % self.prefix)
 
         env.prepend_path("FW_SEARCH_PATH", self.prefix)
         env.prepend_path("FW_SEARCH_PATH", "%s/CalibrationDatabase" % self.prefix)
@@ -82,9 +61,6 @@ class SbndData(Package):
         env.prepend_path("FW_SEARCH_PATH", "%s/SCEoffsets" % self.prefix)
         env.prepend_path("FW_SEARCH_PATH", "%s/ShowerEnergyReco" % self.prefix)
         env.prepend_path("FW_SEARCH_PATH", "%s/WireCell" % self.prefix)
-
-        #env.prepend_path("CMAKE_PREFIX_PATH", "%s" % self.prefix)
-        #env.prepend_path("PKG_CONFIG_PATH", "%s" % self.prefix)
 
     def url_for_version(self, version):
         url = self.url_base+"v"+version.string+"/sbnd_data-"+version.string.replace('_','.')+"-noarch.tar.bz2"

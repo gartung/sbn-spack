@@ -30,14 +30,6 @@ class Sbndata(Package):
     homepage = "https://www.example.com"
     url = "https://github.com/SBNSoftware/sbndata/archive/refs/tags/v01_07.tar.gz"
 
-    # FIXME: Add a list of GitHub accounts to
-    # notify when the package is updated.
-    # maintainers("github_user1", "github_user2")
-
-    # FIXME: Add the SPDX identifier of the project's license below.
-    # See https://spdx.org/licenses/ for a list. Upon manually verifying
-    # the license, set checked_by to your Github username.
-
     version("01_08", sha256="758619e7b6998bc048272ffb731ee759a79f400cdf04b12ae6ad16fda97eec35") 
     version("01_07", sha256="a85f0a9fcd33a7a82688f000594161efcd765c73c139c54c004a36ae52469662")
     version("01_06", sha256="32a4ecab5a5196f488499c38259ad5088bba6c672abcc25085df0e14c1407012")
@@ -48,7 +40,6 @@ class Sbndata(Package):
     version("01_00", sha256="2ef4b2cca5b9cf6a478d9f8febe7c10c75479375b87469c05d1e176dc649ae95")
 
     def install(self, spec, prefix):
-        print(self.stage.source_path)
         src = glob.glob(self.stage.source_path)[0]
         install_tree(src, prefix)
 
@@ -59,4 +50,3 @@ class Sbndata(Package):
         env.prepend_path("FW_SEARCH_PATH", "%s/triggerDatabase" % self.prefix)
         env.prepend_path("CMAKE_PREFIX_PATH", "%s" % self.prefix)
         env.prepend_path("PKG_CONFIG_PATH", "%s" % self.prefix)
-
