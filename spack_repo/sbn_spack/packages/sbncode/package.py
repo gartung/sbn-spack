@@ -34,7 +34,7 @@ class Sbncode(CMakePackage):
     git = "https://github.com/SBNSoftware/sbncode.git"
 
     version("v10_12_02",commit="813ca27339a3aac3fcf15ef78332c1e7978fa389", submodules=True)
-    version("v10_11_01",commit="30569b2615f93ab698d68a84beb21e5bc031cd5c", submodules=True)
+    version("v10_11_01_01",commit="30569b2615f93ab698d68a84beb21e5bc031cd5c", submodules=True)
     version("v10_06_00_01", commit="fb929f3d9ac910bec5da48ca8adcc1bad0412eb6", submodules=True)
     version("v10_04_07", commit="412514c73b41c88fcbd9ffcf0632ed186703a2d3", submodules=True)
     version("v10_04_06_p01",commit="41ef8493069b0f07287e43ed66873484c0a203d5", submodules=True)

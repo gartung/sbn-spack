@@ -70,6 +70,15 @@ class Sbndcode(CMakePackage):
         filter_file('cetmodules REQUIRED', 'cetmodules '+cetmodules_version+' REQUIRED','CMakeLists.txt')
         filter_file('sbndcode LANGUAGES', 'sbndcode VERSION '+sbndcode_version+' LANGUAGES','CMakeLists.txt')
 
+        filter_file('#include "tensorflow/cc/saved_model/tag_constants.h"',
+                    '#include "tensorflow/cc/saved_model/bundle_v2.h"\n#include "tensorflow/cc/saved_model/constants.h"\n#include "tensorflow/cc/saved_model/loader.h"',
+                    "sbndcode/SBNDCVN/tf/tf_graph.cc",
+                    )
+        filter_file("{tensorflow::kSavedModelTagServe},",
+                    "{},",
+                    "sbndcode/SBNDCVN/tf/tf_graph.cc",
+                    )
+
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/v{1}.tar.gz"
         return url.format(self.name, version.underscored)
@@ -80,8 +89,8 @@ class Sbndcode(CMakePackage):
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=True",
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
-            "-Dsbndcode_WP_DIR={0}".format(self.spec["wire-cell-toolkit"].prefix),
-            "--debug-find"
+            "-Dsbndcode_WP_DIR={0}/wire-cell-cfg".format(self.prefix),
+            #"--debug-find"
             ]
         return args
 
@@ -90,13 +99,15 @@ class Sbndcode(CMakePackage):
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
         spack_env.set("SBNDCODE_DIR", str(self.build_directory))
         spack_env.prepend_path("CET_PLUGIN_PATH", os.path.join(self.build_directory, "lib"))
-        for d in self.spec.traverse(
-            root=False, cover="nodes", order="post", deptype=("link"), direction="children"
-        ):
-            spack_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
+        #for d in self.spec.traverse(
+        #    root=False, cover="nodes", order="post", deptype=("link"), direction="children"
+        #):
+        #    spack_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         spack_env.prepend_path("GENIE_INC", str(self.spec["genie"].prefix.include))
         spack_env.prepend_path("LD_LIBRARY_PATH", "{0}/lib/python{1}/site-packages/tensorflow".format(self.spec["py-tensorflow"].prefix, "3.10"))
+        spack_env.prepend_path("WIRECELL_PATH", os.path.join(self.spec['sbnd-data'].prefix.WireCell))
+        spack_env.prepend_path("WIRECELL_PATH", os.path.join(self.prefix.WireCell.cfg))
 
     def setup_run_environment(self, run_env):
         run_env.prepend_path("PATH", os.path.join(self.prefix, "bin"))
