@@ -13,18 +13,14 @@ class ArtdaqRuncontrolGui(CMakePackage):
     homepage = "https://github.com/SBNSoftware"
     url = "https://github.com/SBNSoftware/artdaq-runcontrol-gui"
     git_base = "https://github.com/SBNSoftware/artdaq-runcontrol-gui.git"
+    version("master", git=git_base, branch="master", get_full_repo=True)
     list_url = "https://github.com/SBNSoftware/artdaq-runcontrol-gui/tags"
     git = git_base
     version("develop", git=git_base, branch="develop", get_full_repo=True)
 
-    version(
-        "v1_03_05",
-        sha256="3c5dceeebd4cec1d81a8c2af460db89ae8f927c979ae0512c83c7267c283f82f",
-    )
-    version(
-        "v1_03_04",
-        sha256="57273320a95de6abacf4a853b53507710bb505a3e33dd09b74e3fd1b0e2e94ea",
-    )
+    version("v1_03_06",sha256="4eb76ffecbf016aa22237a6729a4cac7ebc4a3ddd241a2d70eeaeba344357a60",)
+    version("v1_03_05",sha256="3c5dceeebd4cec1d81a8c2af460db89ae8f927c979ae0512c83c7267c283f82f",)
+    version("v1_03_04",sha256="57273320a95de6abacf4a853b53507710bb505a3e33dd09b74e3fd1b0e2e94ea",)
 
     depends_on("cetmodules", type="build")
     depends_on("c", type="build")

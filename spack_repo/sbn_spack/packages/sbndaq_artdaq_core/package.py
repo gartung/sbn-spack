@@ -20,15 +20,20 @@ class SbndaqArtdaqCore(CMakePackage):
     git = git_base
     list_url = "https://github.com/SBNSoftware/sbndaq-artdaq-core/tags"
 
-    version("1.11.00", sha256="26af0670f1ce6e3e8253133d132a54e5156f0ce3c3bc0fe14c21084d9a25c1b4")
-    version("1.10.10", sha256="bbc27d5fb4e3974f1c710820606819ea5eb1e40ab7234708c5589fa079e45d04")
-    version("1.10.09", sha256="273f94a7f406c50e3fe516a10cc9811f28ee74062a4af2dc8ba4cf0af4a5734c")
-    version("1.10.08", sha256="2dae0e0952c6005978b8f0f58cb02448805293b0a9788c59484e5da368ec0c9a")
-    version("1.10.06", sha256="45a0d2fe62226c2111992bd0b0c020b3dcdd406a3fdf13db6bdc0fb1a1e3ee40")
-    version("1.10.04", sha256="16d537f75e390a4f101f08c22181fb9fffcd5e2d282cd39865b86c9327f3596d")
-    version("1.10.03", sha256="de72fba489e5f15b89843a86d60e3fd75d5fd18993dc353017cc657be602323b")
-    version("1.10.02", sha256="8ea8b5d545bd42eb0547e3745b6b076236205d771e9a8e95ba1649df5222f88b")
-    version("1.10.01", sha256="7dd4d1240f3fcde891a2431b1fd1376385dc78ead8cf131443c5a57eef606912")
+
+    version("v1_10_08", sha256="2dae0e0952c6005978b8f0f58cb02448805293b0a9788c59484e5da368ec0c9a")
+    version("v1_10_06", sha256="45a0d2fe62226c2111992bd0b0c020b3dcdd406a3fdf13db6bdc0fb1a1e3ee40")
+    version("v1_10_04", sha256="16d537f75e390a4f101f08c22181fb9fffcd5e2d282cd39865b86c9327f3596d")
+    version("v1_10_03", sha256="de72fba489e5f15b89843a86d60e3fd75d5fd18993dc353017cc657be602323b")
+    version("v1_10_02", sha256="a8ddec009322f17ec8c690185b10ad486a697c16b1b44425f5e0d07ba51a9829")
+    version("v1_10_01", sha256="7dd4d1240f3fcde891a2431b1fd1376385dc78ead8cf131443c5a57eef606912")
+    version("v1_10_00", sha256="219df9d450107afc9ef38e7c77e704b719ac621d5c92e9d0aeca8aa48a13895d")
+    version("v1_09_01", sha256="bb47b25a02a58bc3233dc4d38543ff38e79bb03b6840ed716b7319327962560d")
+    version("v1_09_00", sha256="76fcd5e9b8e2167268f23c549c825445de94e4e69941ffb0a70297a8093b1ca5")
+    version("v1_08_00of0", sha256="4b839b28a9ac17b89a3c33f840fb7cd3ae96f13c12ab461794a7dd04b144b024")
+    version("v1_08_00", sha256="02c5008d8b411f3edd8a67be9ae4f51fba840533693c624981a649679c0e43dd")
+    
+    version("migration", git=git_base, branch="feature/upgrade_gcc13.1.0", get_full_repo=True)
     version("develop", git=git_base, branch="develop", get_full_repo=True)
 
     variant(
@@ -51,9 +56,6 @@ class SbndaqArtdaqCore(CMakePackage):
     def url_for_version(self, version):
         url = "https://github.com/SBNSoftware/{0}/archive/refs/tags/{1}.tar.gz"
         return url.format(self.name, version.underscored)
-
-    # patch("cetmodules2.patch", when="@develop")
-    # patch("v1_00_00of0.patch", when="@v1_00_00of0")
 
     patch('artdaq-core-4.0.patch', when='^artdaq-core@v4:')
 

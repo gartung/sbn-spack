@@ -17,6 +17,7 @@ class Sbnanaobj(CMakePackage):
     git = git_base
     list_url = "https://github.com/SBNSoftware/sbnanaobj/tags"
 
+    version("10.00.12", sha256="224c1ede5550f8ad5837a7cf99e4961adf8ee71d98d45234f1ce0cda80ae2dbd")
     version("10.00.11", sha256="0206e96d17d0049b0f8bd779f3ad71b6a0f64d7b4febe6944952143117b0f0f4")
     version("10.00.10", sha256="1d37747e5efeff0405dfd139a43c63f88327f5c23d0373dcb7eca8475bc33c6f")
     version("10.00.09", sha256="80a15de21fbebcb3beca7131c5f6cc89ab8b8d1ca661439e8b5d943b93f4a2a8")

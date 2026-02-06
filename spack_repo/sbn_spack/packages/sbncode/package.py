@@ -30,19 +30,20 @@ class Sbncode(CMakePackage):
     framework for particle physics experiments.
     """
 
-    git_base = "https://github.com/SBNSoftware/sbncode"
-    git = f"{git_base}.git"
-    url = f"{git_base}/archive/v09_37_02_03.tar.gz"
-    list_url = f"{git_base}/tags"
+    url = "https://github.com/SBNSoftware/sbncode/archive/refs/tags/v09_35_01.tar.gz"
+    git = "https://github.com/SBNSoftware/sbncode.git"
+
+    version("v10_12_02",commit="813ca27339a3aac3fcf15ef78332c1e7978fa389", submodules=True)
+    version("v10_11_01_01",commit="30569b2615f93ab698d68a84beb21e5bc031cd5c", submodules=True)
+    version("v10_06_00_01", commit="fb929f3d9ac910bec5da48ca8adcc1bad0412eb6", submodules=True)
+    version("v10_04_07", commit="412514c73b41c88fcbd9ffcf0632ed186703a2d3", submodules=True)
+    version("v10_04_06_p01",commit="41ef8493069b0f07287e43ed66873484c0a203d5", submodules=True)
+    version("v10_04_04",commit="d49df6743d95631d6c9edc2ae01ee3f3e3a5c01f", submodules=True)
+    version("v09_93_01_p01", commit="b67723df67c57e7325c4baf3825760c6683f1c7a", submodules=True)
+    version("v09_93_01_p02", commit="45baa22ccf40934ca65f5c5229df4c52ad1f7fbb", submodules=True)
 
     version("develop", branch="develop", submodules=True, get_full_repo=True)
-    version("10.11.01", tag="v10_11_01", commit="d90a687042fd24e178f9f802ea27f6fd92cedaa2", submodules=True)
-    version("10.10.05", tag="v10_10_05", commit="7901e41139aff150775492e7a3d00157d0c29278", submodules=True)
 
-    patch("v09_35_00.patch", when="@09.35.00")
-    patch("v09_37_02_03.patch", when="@09.37.02.03")
-    patch("v09_37_01_02.patch", when="@09.37.01.02")
-    patch("v09_37_01_03.patch", when="@09.37.01.03")
     patch("artdaq-core-v4.0.patch", when="^artdaq-core@v4:")
 
 
@@ -68,6 +69,8 @@ class Sbncode(CMakePackage):
     depends_on("cxx", type="build")
 
     # Build and link dependencies.
+
+    depends_on("genie-xsec")
     depends_on("art")
     depends_on("artdaq-core")
     depends_on("art-root-io")
@@ -134,6 +137,12 @@ class Sbncode(CMakePackage):
     depends_on("xerces-c")
     depends_on("zlib")
     depends_on("larcv2")
+    depends_on("nusystematics")
+    depends_on("geant4reweight")
+
+    depends_on("sbndata")
+    depends_on("sbnalg", when="@v10_04_07:")
+
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
