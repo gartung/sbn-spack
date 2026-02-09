@@ -89,7 +89,7 @@ class Sbndcode(CMakePackage):
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=True",
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
-            "-Dsbndcode_WP_DIR={0}/wire-cell-cfg".format(self.prefix),
+            "-Dsbndcode_WP_DIR=wire-cell-cfg",
             #"--debug-find"
             ]
         return args
