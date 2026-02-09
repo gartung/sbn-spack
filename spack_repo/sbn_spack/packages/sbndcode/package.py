@@ -39,7 +39,7 @@ class Sbndcode(CMakePackage):
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
 
-    depends_on("libjpeg")
+    depends_on("jpeg")
     depends_on("libpng")
     depends_on("giflib")
     depends_on("eigen")
