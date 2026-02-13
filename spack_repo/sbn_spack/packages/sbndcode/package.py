@@ -14,8 +14,13 @@ class Sbndcode(CMakePackage):
     framework for particle physics experiments.
     """
 
+    homepage = "https://github.com/SBNSoftware/sbndcode"
+    git = "https://github.com/SBNSoftware/sbndcode"
     git_base = "https://github.com/SBNSoftware/sbndcode.git"
+    url = f"{git}/archive/v09_32_00.tar.gz"
+    list_url = "https://github.com/SBNSoftware/sbndcode/tags"
 
+    version("develop", branch="develop", get_full_repo=True)
     version("10.11.01.01", sha256="dae33d76ae429e1ad5f4775c0e6a0059fb44d7190471db378d7748285f4533d5")
     version("10.12.02", sha256="9360544a3b9ad2dd7500d1479b1a76b52a2153169a9222eccc17153477894c9a")
     version("10.06.00.01", sha256="5ad9dfb9e96adf82a9f0a6fcbcb8042664b1349fe4f44374462f17fce2d95b51")

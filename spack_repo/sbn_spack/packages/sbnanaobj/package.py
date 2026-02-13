@@ -30,9 +30,15 @@ from spack.package import *
 class Sbnanaobj(CMakePackage):
     """FIXME: Put a proper description of your package here."""
 
-    homepage = "https://www.example.com"
-    url = "https://github.com/SBNSoftware/sbnanaobj/archive/refs/tags/v09_17_04.tar.gz"
 
+    homepage = "https://github.com/SBNSoftware/sbnanaobj"
+    url = "https://github.com/SBNSoftware/sbnanaobj/archive/refs/tags/v09_17_04.tar.gz"
+    git_base="https://github.com/SBNSoftware/sbnanaobj.git"
+    git = git_base
+    list_url = "https://github.com/SBNSoftware/sbnanaobj/tags"
+
+
+    version("develop", branch="develop", get_full_repo=True)
     version("10.00.13", sha256="3a0e004fa0176da7c907b3708013a0302079c7bab540c1a602278ebb2584183d")
     version("10.00.12", sha256="224c1ede5550f8ad5837a7cf99e4961adf8ee71d98d45234f1ce0cda80ae2dbd")
     version("10.00.04", sha256="7f53cfedfba6e864e438a949ad6c314faf627435f98984786b7713d010579eea")
