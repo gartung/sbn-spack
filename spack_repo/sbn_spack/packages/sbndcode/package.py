@@ -44,7 +44,7 @@ class Sbndcode(CMakePackage):
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
 
-    depends_on("libjpeg")
+    depends_on("jpeg")
     depends_on("libpng")
     depends_on("giflib")
     depends_on("eigen")
@@ -94,7 +94,7 @@ class Sbndcode(CMakePackage):
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=True",
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
-            "-Dsbndcode_WP_DIR={0}/wire-cell-cfg".format(self.prefix),
+            "-Dsbndcode_WP_DIR=wire-cell-cfg",
             #"--debug-find"
             ]
         return args
