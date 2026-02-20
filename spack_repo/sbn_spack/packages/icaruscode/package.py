@@ -183,9 +183,6 @@ class Icaruscode(CMakePackage):
                 self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)
                 )
         args = [
-            "-DTensorFlow_ROOT:FILEPATH={0}".format(tdir),
-            "-DTensorFlow_cc_LIBRARY:FILEPATH={0}/libtensorflow_cc.so.2".format(tdir),
-            "-DTensorFlow_framework_LIBRARY:FILEPATH={0}/libtensorflow_framework.so.2".format(tdir),
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dicaruscode_FW_DIR=fw",
             "-Dicaruscode_WP_DIR=wire-cell-cfg",
@@ -193,10 +190,41 @@ class Icaruscode(CMakePackage):
             "-DCPPGSL_INC={0}".format(self.spec["cppgsl"].prefix.include),
             "-DTRACE_INC={0}".format(self.spec["trace"].prefix.include),
             "-DLIBWDA_INC={0}".format(self.spec["libwda"].prefix.include),
+            self.define(
+                "TensorFlow_INC",
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib,
+                "python{0}/site-packages/tensorflow/include".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+                + ";" +
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib64,
+                "python{0}/site-packages/tensorflow/include".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+            ),
+            self.define(
+                "TensorFlow_DIR",
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib,
+                "python{0}/site-packages/tensorflow".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+                + ";" +
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib64,
+                "python{0}/site-packages/tensorflow".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+            ),
+            "--debug-find"
         ]
         return args
 
     def setup_build_environment(self, spack_env):
+        spack_env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["py-tensorflow"].prefix.lib, "python{0}/site-packages/tensorflow".format(self.spec["python"].version.up_to(2))))
+        spack_env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["py-tensorflow"].prefix.lib64, "python{0}/site-packages/tensorflow".format(self.spec["python"].version.up_to(2))))
         spack_env.set("CETBUILDTOOLS_VERSION", self.spec["cetmodules"].version.string)
         spack_env.set("CETBUILDTOOLS_DIR", self.spec["cetmodules"].prefix)
         spack_env.append_path("CMAKE_PREFIX_PATH", self.spec["cetmodules"].prefix)
