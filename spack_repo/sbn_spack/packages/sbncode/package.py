@@ -113,13 +113,32 @@ class Sbncode(CMakePackage):
             "-DCMAKE_RULE_MESSAGES=1",
             "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
             self.define(
-                "TensorFlow_LIBRARIES",
+                "TensorFlow_INC",
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib,
+                "python{0}/site-packages/tensorflow/include".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+                + ";" +
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib64,
+                "python{0}/site-packages/tensorflow/include".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
+            ),
+            self.define(
+                "TensorFlow_DIR",
                 join_path(
                 self.spec["py-tensorflow"].prefix.lib,
                 "python{0}/site-packages/tensorflow".format(
                     self.spec["python"].version.up_to(2)
-                ),
-              ),
+                ),)
+                + ";" +
+                join_path(
+                self.spec["py-tensorflow"].prefix.lib64,
+                "python{0}/site-packages/tensorflow".format(
+                    self.spec["python"].version.up_to(2)
+                ),)
             ),
             "--debug-find"
         ]
@@ -127,6 +146,7 @@ class Sbncode(CMakePackage):
 
     def setup_build_environment(self, spack_env):
         spack_env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["py-tensorflow"].prefix.lib, "python{0}/site-packages/tensorflow".format(self.spec["python"].version.up_to(2))))
+        spack_env.prepend_path("CMAKE_PREFIX_PATH", join_path(self.spec["py-tensorflow"].prefix.lib64, "python{0}/site-packages/tensorflow".format(self.spec["python"].version.up_to(2))))
         spack_env.prepend_path("LD_LIBRARY_PATH", self.spec["root"].prefix.lib)
         spack_env.prepend_path("ROOT_X3d", self.spec["root"].prefix.include)
         spack_env.prepend_path("PATH", os.path.join(self.build_directory, "bin"))
