@@ -104,8 +104,8 @@ class Sbncode(CMakePackage):
         # Set CMake args.
         args = [
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
-            "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch".format(
-                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
+            "-DCMAKE_PREFIX_PATH={0}/lib/python{1}/site-packages/torch;{2}/lib64/python{3}/site-packages/torch".format(
+                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2),self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
             ),
             "-DZLIB_ROOT={0}".format(self.spec["zlib"].prefix),
             "-DIGNORE_ABSOLUTE_TRANSITIVE_DEPENDENCIES=1",
@@ -155,12 +155,21 @@ class Sbncode(CMakePackage):
         # Perl modules.
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         # Larcv modules
-        spack_env.set(
+        if os.path.exists(self.spec["py-tensorflow"].prefix.lib64):
+            spack_env.set(
+                "Torch_DIR",
+                "{0}/lib64/python{1}/site-packages/torch/share/cmake/Torch".format(
+                    self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
+                ),
+                )
+        else 
+            spack_env.set(
                 "Torch_DIR",
                 "{0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
                     self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
                 ),
             )
+
 
     def setup_run_environment(self, run_env):
         run_env.prepend_path("LD_LIBRARY_PATH", self.spec["python"].prefix.lib)

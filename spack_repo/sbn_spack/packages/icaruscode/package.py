@@ -173,8 +173,8 @@ class Icaruscode(CMakePackage):
     @property
     def cmake_prefix_paths(self):
         return [ self.prefix,
-                "{0}/lib/python{1}/site-packages/torch".format(
-                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2))
+                "{0}/lib/python{1}/site-packages/torch;{2}/lib64/python{3}/site-packages/torch".format(
+                self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2),self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2))
                 ]
 
     def cmake_args(self):
