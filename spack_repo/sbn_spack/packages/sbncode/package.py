@@ -162,7 +162,7 @@ class Sbncode(CMakePackage):
                     self.spec["py-torch"].prefix, self.spec["python"].version.up_to(2)
                 ),
                 )
-        else 
+        else: 
             spack_env.set(
                 "Torch_DIR",
                 "{0}/lib/python{1}/site-packages/torch/share/cmake/Torch".format(
