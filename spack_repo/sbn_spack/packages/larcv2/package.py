@@ -32,7 +32,8 @@ class Larcv2(MakefilePackage):
 
     homepage = "https://github.com/DeepLearnPhysics/larcv2"
     url = "https://github.com/DeepLearnPhysics/larcv2/archive/refs/tags/v2_2_6.tar.gz"
-
+    git = "https://github.com/DeepLearnPhysics/larcv2.git"
+    version("develop", branch="develop", get_full_repo=True)
     version("2_2_6", sha256="2d301967017e14453110122a3b2abb0070ab57e9c2b5b6e9cc8b6aaa8f0b656b")
     version("2_2_5", sha256="0536d09018cada91dcdd0b0c5d365c6cecb8b1790ed7359d2a90d23446bf51c7")
     version("2_2_1", sha256="e104579f7e2ffa8564a1c8c73947f3416099528e04eede204d40c8b8c118fa88")
