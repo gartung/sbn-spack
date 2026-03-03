@@ -56,7 +56,7 @@ class Icarusutil(CMakePackage):
     depends_on("py-pycurl")
     depends_on("cetmodules", type="build")
 
-    patch("cetmodules2.patch")
+#    patch("cetmodules2.patch")
 
     def cmake_args(self):
         args = ["-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value)]

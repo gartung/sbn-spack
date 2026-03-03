@@ -34,7 +34,7 @@ class Sbnobj(CMakePackage):
     )
 
     patch("spack.patch")
-    patch("cetmodules2.patch", when="@develop")
+#    patch("cetmodules2.patch", when="@develop")
 
     depends_on("c", type="build")
     depends_on("cxx", type="build")
