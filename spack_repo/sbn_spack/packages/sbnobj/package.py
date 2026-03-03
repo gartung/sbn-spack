@@ -33,7 +33,7 @@ class Sbnobj(CMakePackage):
         description="Use the specified C++ standard when building.",
     )
 
-    patch("spack.patch")
+#    patch("spack.patch")
 #    patch("cetmodules2.patch", when="@develop")
 
     depends_on("c", type="build")
