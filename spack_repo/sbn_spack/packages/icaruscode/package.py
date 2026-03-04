@@ -58,7 +58,7 @@ class Icaruscode(CMakePackage):
     version("09.89.01.02p02", sha256="1b7df6a9a0f0059bc3cd2ff63cd715017e0514025e54e81b13e1d52466849fec")
     version("09.35.00", sha256="9c265335bbfc728a5a9d47cc615475eb9e57d8871224ac0aee44ac763e166b54")
 
-    patch("cetmodules2.patch", when="@develop")
+#    patch("cetmodules2.patch", when="@develop")
     patch("v10_06_00_06p01.patch", when="@10.06.00.06p01")
 
 

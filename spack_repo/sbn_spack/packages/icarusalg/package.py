@@ -74,7 +74,7 @@ class Icarusalg(CMakePackage):
     version("09.28.00", sha256="ad67ed3fd1b3bfee5a8c02fee64da6548fcdfa7021bcd9025f9f32fefd7ac9c2")
 
     patch("mwm.patch", when="@09.28.01")
-    patch("cetmodules2.patch", when="@develop")
+#    patch("cetmodules2.patch", when="@develop")
     patch("v09_34_00.patch", when="@09.34.00")
     patch("v09_37_01.patch", when="@09.37.01")
     patch("v09_37_02_01.patch", when="@09.37.02.01")

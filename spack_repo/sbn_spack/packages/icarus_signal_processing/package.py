@@ -62,7 +62,7 @@ class IcarusSignalProcessing(CMakePackage):
     depends_on("root", type=("build", "run"))
     depends_on("nlohmann-json", type=("build", "run"))
 
-    patch("cetmodules2.patch", when="@develop")
+#    patch("cetmodules2.patch", when="@develop")
     patch("v09_32_01.patch", when="@09.32.01")
     patch("v09_37_01.patch", when="@09.37.01")
 

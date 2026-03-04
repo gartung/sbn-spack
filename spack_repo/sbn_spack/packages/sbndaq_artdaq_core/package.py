@@ -17,6 +17,7 @@ class SbndaqArtdaqCore(CMakePackage):
     homepage = "https://cdcvs.fnal.gov/redmine/projects/sbndaq/wiki"
     url = "https://github.com/SBNSoftware/sbndaq-artdaq-core/archive/v1_00_00of0.tar.gz"
     git_base = "https://github.com/SBNSoftware/sbndaq-artdaq-core.git"
+    git = "https://github.com/SBNSoftware/sbndaq-artdaq-core.git"
     list_url = "https://api.github.com/repos/SBNSoftware/sbndaq-artdaq-core/tags"
 
     version("v1_10_08", sha256="2dae0e0952c6005978b8f0f58cb02448805293b0a9788c59484e5da368ec0c9a")
@@ -32,7 +33,7 @@ class SbndaqArtdaqCore(CMakePackage):
     version("v1_08_00", sha256="02c5008d8b411f3edd8a67be9ae4f51fba840533693c624981a649679c0e43dd")
     
     version("migration", git=git_base, branch="feature/upgrade_gcc13.1.0", get_full_repo=True)
-    version("develop", git=git_base, branch="develop", get_full_repo=True)
+    version("develop", branch="develop", get_full_repo=True)
 
     variant(
         "cxxstd",

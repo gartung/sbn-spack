@@ -27,7 +27,7 @@ class Sbndcode(CMakePackage):
     version("10.04.07", tag="v10_04_07", git=git_base, get_full_repo=True)
     version("10.04.06.01",tag="v10_04_06_01", git=git_base, get_full_repo=True)
 
-    patch("spack.patch")
+#    patch("spack.patch")
 
     variant(
         "cxxstd",
