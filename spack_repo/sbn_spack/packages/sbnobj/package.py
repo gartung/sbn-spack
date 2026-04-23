@@ -21,6 +21,7 @@ class Sbnobj(CMakePackage):
     list_url = "https://github.com/SBNSoftware/sbnobj/tags"
 
     version("develop", branch="develop", get_full_repo=True)
+    version("10.20.03", sha256="906e10c498ac5a90490cbc67a732775711fdb675904795fabf1be9e38efe5c52")
     version("10.03.01", sha256="2c4e1c79a3b823d507ee9708aeec66951fb1539e31dc911fb02567acc809d24c")
     version("10.03.00", sha256="d5b96c6d63d2deec94a3abab426925303f4bde40209b6270b1fa41a9a83f2689")
     version("10.01.00", sha256="f0df159da2b94dbd77c61f065d18b3124d44b90aee229fa4ca67c9f3aadbff53")
