@@ -116,7 +116,7 @@ class Sbndcode(CMakePackage):
         #    spack_env.prepend_path("ROOT_INCLUDE_PATH", str(self.spec[d.name].prefix.include))
         spack_env.prepend_path("PERL5LIB", os.path.join(self.build_directory, "perllib"))
         spack_env.prepend_path("GENIE_INC", str(self.spec["genie"].prefix.include))
-        spack_env.prepend_path("protobuf_DIR", "{0}/cmake;{1}/cmake".format(self.spec["protobuf"].prefix.lib64,self.spec["protobuf"].prefix.lib))
+        spack_env.prepend_path("protobuf_DIR", "{0}/cmake/protobuf;{1}/cmake/protobuf".format(self.spec["protobuf"].prefix.lib64,self.spec["protobuf"].prefix.lib))
         spack_env.prepend_path("TENSORFLOW_DIR", "{0}/lib/python{1}/site-packages/tensorflow;{2}/lib64/python{3}/site-packages/tensorflow".format(self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2),self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)))
         spack_env.prepend_path("TENSORFLOW_INC", "{0}/lib/python{1}/site-packages/tensorflow/include;{2}/lib64/python{3}/site-packages/tensorflow/include".format(self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2),self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)))
         spack_env.prepend_path("LD_LIBRARY_PATH", "{0}/lib/python{1}/site-packages/tensorflow;{2}/lib64/python{3}/site-packages/tensorflow".format(self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2),self.spec["py-tensorflow"].prefix, self.spec["python"].version.up_to(2)))
