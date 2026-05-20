@@ -99,6 +99,8 @@ class Sbndcode(CMakePackage):
             "-DCMAKE_CXX_STANDARD={0}".format(self.spec.variants["cxxstd"].value),
             "-Dsbndcode_FW_DIR=fw",
             "-Dsbndcode_WP_DIR=wire-cell-cfg",
+            "-Dsbndcode_UPS_PRODUCT_NAME=sbndcode",
+            "-Dsbndcode_UPS_PRODUCT_VERSION={0}".format(self.version.underscored)
             #"--debug-find"
             ]
         return args
