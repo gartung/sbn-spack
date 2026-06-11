@@ -26,6 +26,7 @@ class Sbnalg(CMakePackage):
     depends_on("cetmodules")
 
     version("develop", branch="develop", get_full_repo=True)
+    version("10.20.09", sha256="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
     version("10.20.03", sha256="d64f1aea05c10430f8a30ae4cab8c825350bf3e2f38b203cc16b680058ce2cf9")
     version("10.12.02", sha256="887a1ebf0bf11da22159f185d922dc4ac60b26216fdb9b34694853bd66309137")
     version("10.11.01.01", sha256="035775680fc6ea0b28e7f186cdfc1dbbfc977de5eed70494406f93d928ddbb72")
