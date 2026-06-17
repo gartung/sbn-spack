@@ -108,7 +108,6 @@ class Icaruscode(CMakePackage):
     depends_on("geant4", type=("build", "run"))
     depends_on("icarus-signal-processing", type=("build", "run"))
     depends_on("icarusutil", type=("build", "run"))
-    depends_on("larsoft", type=("build", "run"))
     depends_on("larana", type=("build", "run"))
     depends_on("larcoreobj", type=("build", "run"))
     depends_on("larcorealg", type=("build", "run"))
