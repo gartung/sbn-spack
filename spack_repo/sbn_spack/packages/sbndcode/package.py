@@ -77,10 +77,10 @@ class Sbndcode(CMakePackage):
                 'find_package(protobuf REQUIRED)\nfind_package(cetmodules REQUIRED)',
                 "CMakeLists.txt")
         filter_file('cetmodules REQUIRED', 'cetmodules '+cetmodules_version+' REQUIRED','CMakeLists.txt')
-        filter_file('sbndcode LANGUAGES', 'sbndcode VERSION '+sbndcode_version+' LANGUAGES','CMakeLists.txt')
+        filter_file('sbndcode LANGUAGES', 'sbndcode VERSION ${${PROJECT_NAME}_CMAKE_PROJECT_VERSION_STRING} LANGUAGES','CMakeLists.txt')
 
         filter_file('#include "tensorflow/cc/saved_model/tag_constants.h"',
-                    '#include "tensorflow/cc/saved_model/bundle_v2.h"\n#include "tensorflow/cc/saved_model/constants.h"\n#include "tensorflow/cc/saved_model/loader.h"',
+                    '#include "tensorflow/cc/saved_model/constants.h"\n#include "tensorflow/cc/saved_model/loader.h"',
                     "sbndcode/SBNDCVN/tf/tf_graph.cc",
                     )
         filter_file("{tensorflow::kSavedModelTagServe},",
