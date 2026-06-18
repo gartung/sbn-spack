@@ -83,6 +83,7 @@ class Sbncode(CMakePackage):
 
 
     depends_on("larrecodnn")
+    depends_on("larfinder", type="build")
     depends_on("genie-xsec")
     depends_on("sbndaq-artdaq-core")
     depends_on("larcv2")
