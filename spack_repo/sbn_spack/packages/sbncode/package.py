@@ -82,6 +82,7 @@ class Sbncode(CMakePackage):
     depends_on("cxx", type="build")
 
 
+    depends_on("larpandora")
     depends_on("larrecodnn")
     depends_on("larfinder", type="build")
     depends_on("genie-xsec")
