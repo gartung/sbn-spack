@@ -44,7 +44,7 @@ class Sbndcode(CMakePackage):
     depends_on("cmake@3.11:")
     depends_on("cetmodules", type="build")
     depends_on("cetbuildtools", type="build")
-
+    depends_on("larfinder", type="build")
     depends_on("jpeg")
     depends_on("libpng")
     depends_on("giflib")

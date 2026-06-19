@@ -121,6 +121,7 @@ class Icaruscode(CMakePackage):
     depends_on("larpandora", type=("build", "run"))
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
+    depends_on("larsoft", type=("build", "run"))
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec02p02")
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec03p02")
     depends_on("larvecutils", type=("build", "run"), when="@10:")
