@@ -65,6 +65,7 @@ class Icaruscode(CMakePackage):
     def patch(self):
         filter_file("WireCellRoot", "spdlog::spdlog", "icaruscode/Overlays/CMakeLists.txt")
         filter_file(r"(^\s*)jsoncpp", "jsoncpp_lib", "icaruscode/Overlays/CMakeLists.txt")
+        filter_file("find_package\(larsoft REQUIRED \)", "", "CMakeLists.txt")
 
     variant(
         "cxxstd",
@@ -121,7 +122,6 @@ class Icaruscode(CMakePackage):
     depends_on("larpandora", type=("build", "run"))
     depends_on("larpandoracontent", type=("build", "run"))
     depends_on("larreco", type=("build", "run"))
-    depends_on("larsoft", type=("build", "run"))
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec02p02")
     depends_on("larvecutils", type=("build", "run"), when="@09.37.01.vec03p02")
     depends_on("larvecutils", type=("build", "run"), when="@10:")
