@@ -81,9 +81,11 @@ class Sbncode(CMakePackage):
     depends_on("c", type="build")
     depends_on("cxx", type="build")
 
-
-    depends_on("larpandora")
+    depends_on("larana")
+    depends_on("larreco")
     depends_on("larrecodnn")
+    depends_on("larpandora")
+    depends_on("larwirecell")
     depends_on("larfinder", type="build")
     depends_on("genie-xsec")
     depends_on("sbndaq-artdaq-core")
