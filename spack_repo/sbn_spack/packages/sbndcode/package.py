@@ -57,6 +57,7 @@ class Sbndcode(CMakePackage):
     depends_on("larreco")
     depends_on("larrecodnn")
     depends_on("larana")
+    depends_on("larg4", type=("run","test"))
     depends_on("jpeg")
     depends_on("libpng")
     depends_on("giflib")
