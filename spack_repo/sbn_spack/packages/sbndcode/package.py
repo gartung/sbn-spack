@@ -57,7 +57,7 @@ class Sbndcode(CMakePackage):
     depends_on("larreco")
     depends_on("larrecodnn")
     depends_on("larana")
-    depends_on("larg4", type=("run","test"))
+    depends_on("larg4", type=("test", "run"))
     depends_on("jpeg")
     depends_on("libpng")
     depends_on("giflib")
@@ -76,7 +76,8 @@ class Sbndcode(CMakePackage):
 
     depends_on("nuevdb")
     depends_on("sbncode")
-    depends_on("sbnd-data")
+    depends_on("sbnd-data", type=("test", "run"))
+    depends_on("py-fhicl-py", type=("test", "run"))
 
     if "SPACKDEV_GENERATOR" in os.environ:
         generator = os.environ["SPACKDEV_GENERATOR"]
