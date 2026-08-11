@@ -150,6 +150,7 @@ class Icaruscode(CMakePackage):
     depends_on("range-v3", type=("build", "run"))
     depends_on("sbndaq-artdaq-core", type=("build", "run"))
     depends_on("sbnobj", type=("build", "run"))
+    depends_on("sbnalg", type=("build", "run"))
     depends_on("sbncode", type=("build", "run"))
     depends_on("sqlite", type=("build", "run"))
     depends_on("trace", type=("build", "run"))
